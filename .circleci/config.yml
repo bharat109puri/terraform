@@ -14,6 +14,8 @@ jobs:
 
             for dir in ${entrypoints}
             do
+              echo "Validating ${dir}..."
+
               terraform -chdir=${dir} init -backend=false
               terraform -chdir=${dir} fmt -check -diff
               terraform -chdir=${dir} validate
