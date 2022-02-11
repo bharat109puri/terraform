@@ -5,21 +5,22 @@ locals {
   aws_region = "eu-west-1"
 }
 
-remote_state {
-  backend = "s3"
+generate "backend" {
+  path      = "backend.tf"
+  if_exists = "overwrite_terragrunt"
 
-  generate = {
-    path      = "backend.tf"
-    if_exists = "overwrite_terragrunt"
-  }
+  contents = <<-CONTENTS
+    terraform {
+      backend "remote" {
+        hostname     = "app.terraform.io"
+        organization = "recrd"
 
-  config = {
-    bucket         = "recrd-terraform"
-    key            = "${path_relative_to_include()}/terraform.tfstate"
-    region         = local.aws_region
-    encrypt        = true
-    dynamodb_table = "terraform-lock"
-  }
+        workspaces {
+          name = "${path_relative_to_include()}"
+        }
+      }
+    }
+  CONTENTS
 }
 
 generate "provider" {
