@@ -1,6 +1,10 @@
 # vim: set filetype=hcl
 terragrunt_version_constraint = "0.35.16"
 
+locals {
+  aws_region = "eu-west-1"
+}
+
 remote_state {
   backend = "s3"
 
@@ -12,7 +16,7 @@ remote_state {
   config = {
     bucket         = "recrd-terraform"
     key            = "${path_relative_to_include()}/terraform.tfstate"
-    region         = "eu-west-1"
+    region         = local.aws_region
     encrypt        = true
     dynamodb_table = "terraform-lock"
   }
@@ -30,6 +34,10 @@ generate "provider" {
           version = "3.70.0"
         }
       }
+    }
+
+    provider "aws" {
+      region = "${local.aws_region}"
     }
   CONTENTS
 }
