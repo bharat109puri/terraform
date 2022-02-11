@@ -37,3 +37,23 @@ resource "tfe_workspace" "users" {
   #  oauth_token_id =
   #}
 }
+
+resource "tfe_workspace" "bootstrap" {
+  name         = "bootstrap"
+  organization = tfe_organization.recrd.name
+
+  description = "[TEST] Bootstrap"
+
+  allow_destroy_plan    = false
+  auto_apply            = false
+  execution_mode        = "local" # FIXME: AWS credentials
+  file_triggers_enabled = true
+  queue_all_runs        = true
+  trigger_prefixes      = ["bootstrap"]
+  working_directory     = "bootstrap"
+
+  #vcs_repo {
+  #  identifier     =
+  #  oauth_token_id =
+  #}
+}
