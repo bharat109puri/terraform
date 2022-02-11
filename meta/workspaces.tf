@@ -57,3 +57,23 @@ resource "tfe_workspace" "bootstrap" {
   #  oauth_token_id =
   #}
 }
+
+resource "tfe_workspace" "kubernetes" {
+  name         = "kubernetes"
+  organization = tfe_organization.recrd.name
+
+  description = "[TEST] Kubernetes"
+
+  allow_destroy_plan    = false
+  auto_apply            = false
+  execution_mode        = "local" # FIXME: AWS credentials
+  file_triggers_enabled = true
+  queue_all_runs        = true
+  trigger_prefixes      = ["kubernetes"]
+  working_directory     = "kubernetes"
+
+  #vcs_repo {
+  #  identifier     =
+  #  oauth_token_id =
+  #}
+}
