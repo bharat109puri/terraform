@@ -53,3 +53,8 @@ resource "tfe_workspace" "terraform_repo" {
     oauth_token_id = data.tfe_oauth_client.github_recrd_group.oauth_token_id
   }
 }
+
+resource "tfe_run_trigger" "kubernetes" {
+  workspace_id  = tfe_workspace.terraform_repo["kubernetes"].id
+  sourceable_id = tfe_workspace.terraform_repo["bootstrap"].id
+}
