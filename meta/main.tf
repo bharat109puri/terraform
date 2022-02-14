@@ -14,7 +14,7 @@ resource "tfe_organization" "recrd" {
   name  = "recrd"
   email = "mate@recrd.com" # FIXME
 
-  #collaborator_auth_policy = "two_factor_mandatory" # TODO: Ask Gabor to enable 2FA
+  collaborator_auth_policy = "two_factor_mandatory"
 }
 
 resource "tfe_organization_membership" "recrd" {
@@ -30,4 +30,8 @@ resource "tfe_team_organization_member" "owners" {
 
   team_id                    = data.tfe_team.owners.id
   organization_membership_id = tfe_organization_membership.recrd[each.value].id
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
