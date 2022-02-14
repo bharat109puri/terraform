@@ -1,11 +1,11 @@
 output "eks_subnet_ids" {
   description = "IDs of the private EKS subnets"
-  value       = slice(module.vpc.private_subnets, 3, 6)
+  value       = module.vpc.intra_subnets
 }
 
 output "private_subnet_ids" {
-  description = "IDs of the private server subnets"
-  value       = slice(module.vpc.private_subnets, 0, 3)
+  description = "IDs of the private subnets"
+  value       = module.vpc.private_subnets
 }
 
 output "vpc_id" {
