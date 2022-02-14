@@ -19,3 +19,11 @@ provider "registry.terraform.io/hashicorp/aws" {
     "zh:fc3f3cad84f2eebe566dd0b65904c934093007323b9b85e73d9dd4535ceeb29d",
   ]
 }
+
+provider "registry.terraform.io/hashicorp/tfe" {
+  version     = "0.28.1"
+  constraints = "~> 0.27"
+  hashes = [
+    "h1:vjVFQV+tgONY/mF1I8tt8tpuxCJ0oDvuc2W26SgNjoQ=",
+  ]
+}
