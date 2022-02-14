@@ -1,8 +1,10 @@
 locals {
+  # NOTE: Underscores are handled as subdirectories
   workspaces = {
-    bootstrap  = "[TEST] Bootstrap"
-    kubernetes = "[TEST] Kubernetes",
-    users      = "AWS IAM users and roles",
+    bootstrap         = "[TEST] Bootstrap"
+    kubernetes        = "[TEST] Kubernetes",
+    kubernetes_config = "[TEST] Kubernetes configuration and core services",
+    users             = "AWS IAM users and roles",
   }
 }
 
@@ -46,7 +48,7 @@ resource "tfe_workspace" "terraform_repo" {
   execution_mode        = "local" # FIXME: AWS credentials
   file_triggers_enabled = true
   queue_all_runs        = true
-  working_directory     = each.key
+  working_directory     = replace(each.key, "_", "/")
 
   vcs_repo {
     identifier     = "RecrdGroup/terraform"
@@ -57,4 +59,9 @@ resource "tfe_workspace" "terraform_repo" {
 resource "tfe_run_trigger" "kubernetes" {
   workspace_id  = tfe_workspace.terraform_repo["kubernetes"].id
   sourceable_id = tfe_workspace.terraform_repo["bootstrap"].id
+}
+
+resource "tfe_run_trigger" "kubernetes_config" {
+  workspace_id  = tfe_workspace.terraform_repo["kubernetes_config"].id
+  sourceable_id = tfe_workspace.terraform_repo["kubernetes"].id
 }
