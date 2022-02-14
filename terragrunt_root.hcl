@@ -1,21 +1,26 @@
 # vim: set filetype=hcl
 terragrunt_version_constraint = "0.35.16"
 
-remote_state {
-  backend = "s3"
+locals {
+  aws_region = "eu-west-1"
+}
 
-  generate = {
-    path      = "backend.tf"
-    if_exists = "overwrite_terragrunt"
-  }
+generate "backend" {
+  path      = "backend.tf"
+  if_exists = "overwrite_terragrunt"
 
-  config = {
-    bucket         = "recrd-terraform"
-    key            = "${path_relative_to_include()}/terraform.tfstate"
-    region         = "eu-west-1"
-    encrypt        = true
-    dynamodb_table = "terraform-lock"
-  }
+  contents = <<-CONTENTS
+    terraform {
+      backend "remote" {
+        hostname     = "app.terraform.io"
+        organization = "recrd"
+
+        workspaces {
+          name = "${path_relative_to_include()}"
+        }
+      }
+    }
+  CONTENTS
 }
 
 generate "provider" {
@@ -29,7 +34,16 @@ generate "provider" {
           source  = "hashicorp/aws"
           version = "3.70.0"
         }
+        tfe = {
+          version = "~> 0.27"
+        }
       }
     }
+
+    provider "aws" {
+      region = "${local.aws_region}"
+    }
+
+    provider "tfe" {}
   CONTENTS
 }

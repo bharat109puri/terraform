@@ -5,7 +5,7 @@ terraform {
     organization = "recrd"
 
     workspaces {
-      name = "users"
+      name = "bootstrap"
     }
   }
 }
