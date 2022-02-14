@@ -18,4 +18,17 @@ module "eks" {
 
   vpc_id     = data.tfe_outputs.bootstrap.values.vpc_id
   subnet_ids = data.tfe_outputs.bootstrap.values.eks_subnet_ids
+
+  eks_managed_node_groups = {
+    # TODO: Cluster Autoscaler
+    # TODO: One node group per AZ?
+    default_node_group = {
+      # By default, the module creates a launch template to ensure tags are propagated to instances, etc.,
+      # so we need to disable it to use the default template provided by the AWS EKS managed node group service
+      create_launch_template = false
+      launch_template_name   = ""
+
+      subnet_ids = data.tfe_outputs.bootstrap.values.private_subnet_ids
+    }
+  }
 }
