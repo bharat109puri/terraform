@@ -31,4 +31,6 @@ module "eks" {
       subnet_ids = data.tfe_outputs.bootstrap.values.private_subnet_ids
     }
   }
+
+  enable_irsa = true # NOTE: IAM roles for service accounts
 }
