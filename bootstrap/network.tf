@@ -30,6 +30,9 @@ module "vpc" {
   enable_nat_gateway     = true
   one_nat_gateway_per_az = true
 
+  # TODO
+  #enable_flow_log = true
+
   # EKS requirements
   enable_dns_hostnames    = true
   enable_dns_support      = true
