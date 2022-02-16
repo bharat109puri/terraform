@@ -1,10 +1,15 @@
 output "eks_subnet_ids" {
-  description = "IDs of the private EKS subnets"
+  description = "List of the private EKS subnet IDs"
   value       = module.vpc.intra_subnets
 }
 
+output "private_subnet_cidr_blocks" {
+  description = "List of private subnet cidr_blocks"
+  value       = module.vpc.private_subnets_cidr_blocks
+}
+
 output "private_subnet_ids" {
-  description = "IDs of the private subnets"
+  description = "List of the private subnet IDs"
   value       = module.vpc.private_subnets
 }
 
