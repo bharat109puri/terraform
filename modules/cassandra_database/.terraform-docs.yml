@@ -1,0 +1,12 @@
+formatter: markdown table
+
+header-from: main.tf
+
+output:
+  file: README.md
+
+sections:
+  hide:
+    - data-sources
+    - providers
+    - resources
