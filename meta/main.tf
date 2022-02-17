@@ -1,5 +1,6 @@
 locals {
   members = toset([
+    "devang@recrd.com",
     "gabor@recrd.com",
     "mate@recrd.com",
   ])
