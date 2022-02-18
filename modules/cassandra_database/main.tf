@@ -77,6 +77,10 @@ resource "aws_vpc_endpoint" "this" {
   vpc_endpoint_type  = "Interface"
   subnet_ids         = var.subnet_ids
   security_group_ids = [aws_security_group.this.id]
+
+  tags = {
+    Name = "${var.name}-astradb"
+  }
 }
 
 resource "astra_private_link_endpoint" "this" {
