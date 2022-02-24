@@ -9,10 +9,18 @@ The module currently supports provisioning of single-region (but multi-AZ) datab
 
 The AWS account ID and region is assumed based on the default AWS provider configuration.
 
+## Known issues
+
 **The configured database has unrestricted public access** until it's changed manually through https://astra.datastax.com/ console.
 The `astra` Terraform provider doesn't support restricting public access and `astra_access_list` seems to be broken.
 
 DataStax support ticket: 00073817
+
+The `astra` Terraform provider doesn't support changing the name of the main keyspace (created together with the database).
+An attempt to change it results in deletion of the database.
+
+If you remove a keyspace from the Terraform configuration, the `astra` provider is not removing the keyspace only from the Terraform space.
+If you try to recreate the same keyspace with terraform again, the creation is going to fail.
 
 ## TODO
 
@@ -45,5 +53,7 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_database_id"></a> [database\_id](#output\_database\_id) | AstraDB database ID |
 <!-- END_TF_DOCS -->

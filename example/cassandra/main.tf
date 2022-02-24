@@ -17,3 +17,13 @@ module "test" {
     nonsensitive(data.tfe_outputs.bootstrap.values.db_astradb_datastax_com_zone_id),
   ]
 }
+
+resource "astra_keyspace" "lorem" {
+  name        = "lorem"
+  database_id = module.test.database_id
+}
+
+resource "astra_keyspace" "ipsum" {
+  name        = "ipsum"
+  database_id = module.test.database_id
+}
