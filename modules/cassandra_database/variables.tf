@@ -14,7 +14,7 @@ variable "subnet_ids" {
 }
 
 variable "vpc_id" {
-  description = "VPC ID fir the database PrivateLink endpoints"
+  description = "VPC ID for the database PrivateLink endpoints"
   type        = string
 }
 

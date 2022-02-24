@@ -12,6 +12,8 @@ The AWS account ID and region is assumed based on the default AWS provider confi
 **The configured database has unrestricted public access** until it's changed manually through https://astra.datastax.com/ console.
 The `astra` Terraform provider doesn't support restricting public access and `astra_access_list` seems to be broken.
 
+DataStax support ticket: 00073817
+
 ## TODO
 
 - Use security groups instead subnet CIDRs
@@ -25,6 +27,7 @@ The `astra` Terraform provider doesn't support restricting public access and `as
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
 | <a name="requirement_astra"></a> [astra](#requirement\_astra) | >= 2.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.70 |
 
 ## Modules
 
@@ -37,7 +40,7 @@ No modules.
 | <a name="input_name"></a> [name](#input\_name) | AstraDB database name | `string` | n/a | yes |
 | <a name="input_subnet_cidr_blocks"></a> [subnet\_cidr\_blocks](#input\_subnet\_cidr\_blocks) | TEMP: List CIDR blocks to access the database, this should be replaced by list of security groups | `list(string)` | n/a | yes |
 | <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | List of subnet IDs for the database PrivateLink endpoints | `list(string)` | n/a | yes |
-| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | VPC ID fir the database PrivateLink endpoints | `string` | n/a | yes |
+| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | VPC ID for the database PrivateLink endpoints | `string` | n/a | yes |
 | <a name="input_zone_ids"></a> [zone\_ids](#input\_zone\_ids) | List of zone IDs to register the PrivateLink endpoints in (Should be IDs of `apps.astra.datastax.com` and `db.astra.datastax.com`) | `list(string)` | n/a | yes |
 
 ## Outputs

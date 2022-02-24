@@ -8,6 +8,8 @@
  * **The configured database has unrestricted public access** until it's changed manually through https://astra.datastax.com/ console.
  * The `astra` Terraform provider doesn't support restricting public access and `astra_access_list` seems to be broken.
  *
+ * DataStax support ticket: 00073817
+ *
  * ## TODO
  *
  * - Use security groups instead subnet CIDRs
@@ -32,7 +34,7 @@ resource "astra_private_link" "this" {
   datacenter_id      = "${astra_database.this.id}-1"
 }
 
-resource "aws_security_group" "this" {
+resource "aws_security_group" "database_access" {
   name   = "${var.name}-astradb-access"
   vpc_id = var.vpc_id
 
@@ -76,7 +78,7 @@ resource "aws_vpc_endpoint" "this" {
   service_name       = astra_private_link.this.service_name
   vpc_endpoint_type  = "Interface"
   subnet_ids         = var.subnet_ids
-  security_group_ids = [aws_security_group.this.id]
+  security_group_ids = [aws_security_group.database_access.id]
 
   tags = {
     Name = "${var.name}-astradb"

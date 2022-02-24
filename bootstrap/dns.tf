@@ -1,3 +1,4 @@
+# NOTE: `astra_database` resource URLs are using this domain
 resource "aws_route53_zone" "apps_astradb_datastax_com" {
   name = "apps.astra.datastax.com"
 
@@ -6,7 +7,7 @@ resource "aws_route53_zone" "apps_astradb_datastax_com" {
   }
 }
 
-# NOTE: Secure bundle is using `db.` domain (`astra_database` outputs are all in `apps.`)
+# NOTE: AsraDB secure bundle URLs are using this domain
 resource "aws_route53_zone" "db_astradb_datastax_com" {
   name = "db.astra.datastax.com"
 
