@@ -2,6 +2,7 @@ locals {
   # NOTE: Underscores are handled as subdirectories
   workspaces = {
     bootstrap         = "[TEST] Bootstrap"
+    example_cassandra = "[EXAMLPE] DataStax Astra - Serverless Cassandra"
     kubernetes        = "[TEST] Kubernetes",
     kubernetes_config = "[TEST] Kubernetes configuration and core services",
     users             = "AWS IAM users and roles",

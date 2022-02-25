@@ -1,3 +1,13 @@
+output "apps_astradb_datastax_com_zone_id" {
+  description = "Zone ID of the apps.astradb.datastax.com private hosted zone"
+  value       = aws_route53_zone.apps_astradb_datastax_com.zone_id
+}
+
+output "db_astradb_datastax_com_zone_id" {
+  description = "Zone ID of the db.astradb.datastax.com private hosted zone"
+  value       = aws_route53_zone.db_astradb_datastax_com.zone_id
+}
+
 output "eks_subnet_ids" {
   description = "List of the private EKS subnet IDs"
   value       = module.vpc.intra_subnets
