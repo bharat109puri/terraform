@@ -9,7 +9,7 @@ variable "name" {
 }
 
 variable "bootstrap_endpoint" {
-  description = "Kafka cluster bootstrap endpoint (Cluster overview/Cluster settings/General/Identification"
+  description = "Kafka cluster bootstrap endpoint (Cluster overview/Cluster settings/General/Identification)"
   type        = string
 }
 

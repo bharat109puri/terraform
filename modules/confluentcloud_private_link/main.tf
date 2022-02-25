@@ -1,14 +1,20 @@
 locals {
+  # Confluent Cloud doesn't give us the private URLs we need, extract the cluster-specific subdomain from the bootstrap endpoint
   _bootstrap_glb_hostname         = trimsuffix(var.bootstrap_endpoint, ".${data.aws_region.current.name}.aws.glb.confluent.cloud:9092")
   _bootstrap_custer_domain_prefix = reverse(split("-", local._bootstrap_glb_hostname))[0]
 
+  # Non zone-specific VPC endpoint
   vpce_common = reverse(sort(aws_vpc_endpoint.this.dns_entry[*].dns_name))[0]
 
+  # Map AZ IDs (used by Confluent-side certificates) into AZ names (used by VPC endpoints on our side)
   _vpce_prefix = split(".", local.vpce_common)[0]
   _vpce_domain = trimprefix(local.vpce_common, "${local._vpce_prefix}.")
   _az_map      = zipmap(data.aws_availability_zones.available.zone_ids, data.aws_availability_zones.available.names)
 
+  # Hosted zone domain on our side
   cluster_domain = "${local._bootstrap_custer_domain_prefix}.${data.aws_region.current.name}.aws.confluent.cloud"
+
+  # Zone-specific CNAMEs
   cnames = {
     for zone_id in keys(local._az_map) :
     zone_id => "${local._vpce_prefix}-${local._az_map[zone_id]}.${local._vpce_domain}"
