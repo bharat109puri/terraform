@@ -1,30 +1,3 @@
-/**
- * # DataStax AstraDB - Serverless Cassandra
- *
- * The module currently supports provisioning of single-region (but multi-AZ) databases.
- *
- * The AWS account ID and region is assumed based on the default AWS provider configuration.
- *
- * ## Known issues
- *
- * **The configured database has unrestricted public access** until it's changed manually through https://astra.datastax.com/ console.
- * The `astra` Terraform provider doesn't support restricting public access and `astra_access_list` seems to be broken.
- *
- * DataStax support ticket: 00073817
- *
- * The `astra` Terraform provider doesn't support changing the name of the main keyspace (created together with the database).
- * An attempt to change it results in deletion of the database.
- *
- * If you remove a keyspace from the Terraform configuration, the `astra` provider is not removing the keyspace only from the Terraform space.
- * If you try to recreate the same keyspace with terraform again, the creation is going to fail.
- *
- * ## TODO
- *
- * - Use security groups instead subnet CIDRs
- * - Design multi-region
- *   - If we want to have multi-region databases, the interface must change significantly (multi region implies multi VPC)
- *   - The `astra` Terraform provider doesn't support deletion of multi-region databases
-*/
 data "aws_caller_identity" "current" {}
 
 data "aws_region" "current" {}
