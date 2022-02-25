@@ -7,6 +7,10 @@ locals {
     kubernetes_config = "[TEST] Kubernetes configuration and core services",
     users             = "AWS IAM users and roles",
   }
+
+  component_workspaces = {
+    volga = "Kafka Choreographer",
+  }
 }
 
 data "tfe_oauth_client" "github_recrd_group" {
@@ -53,6 +57,27 @@ resource "tfe_workspace" "terraform_repo" {
 
   vcs_repo {
     identifier     = "RecrdGroup/terraform"
+    oauth_token_id = data.tfe_oauth_client.github_recrd_group.oauth_token_id
+  }
+}
+
+resource "tfe_workspace" "component_repos" {
+  for_each = local.component_workspaces
+
+  name         = each.key
+  organization = tfe_organization.recrd.name
+
+  description = each.value
+
+  allow_destroy_plan    = false
+  auto_apply            = false
+  execution_mode        = "local" # TODO: AWS credentials
+  file_triggers_enabled = true
+  queue_all_runs        = true
+  working_directory     = "terraform"
+
+  vcs_repo {
+    identifier     = "RecrdGroup/${each.key}"
     oauth_token_id = data.tfe_oauth_client.github_recrd_group.oauth_token_id
   }
 }
