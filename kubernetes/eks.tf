@@ -11,10 +11,18 @@ module "eks" {
   cluster_version = "1.21"
 
   cluster_endpoint_private_access = true
-  cluster_endpoint_public_access  = true
-  cluster_endpoint_public_access_cidrs = [
-    "188.214.10.130/32", # mate@home
-  ]
+  cluster_endpoint_public_access  = false
+
+  cluster_security_group_additional_rules = {
+    vpn_access_443 = {
+      description              = "Allow VPN clients to access cluster API"
+      protocol                 = "tcp"
+      from_port                = 443
+      to_port                  = 443
+      type                     = "ingress"
+      source_security_group_id = data.tfe_outputs.bootstrap.values.vpn_clients_security_group_id
+    }
+  }
 
   vpc_id     = data.tfe_outputs.bootstrap.values.vpc_id
   subnet_ids = data.tfe_outputs.bootstrap.values.eks_subnet_ids
@@ -32,5 +40,10 @@ module "eks" {
     }
   }
 
-  enable_irsa = true # NOTE: IAM roles for service accounts
+  enable_irsa = true # NOTE: irsa: IAM roles for service accounts
+
+  cluster_encryption_config = toset([{
+    provider_key_arn = nonsensitive(data.tfe_outputs.bootstrap.values.eks_secret_encryption_key_arn)
+    resources        = ["secrets"]
+  }])
 }

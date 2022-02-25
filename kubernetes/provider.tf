@@ -15,4 +15,6 @@ provider "aws" {
   region = "eu-west-1"
 }
 
-provider "tfe" {}
+provider "tfe" {
+  token = var.tfe_token
+}
