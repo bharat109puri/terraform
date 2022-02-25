@@ -15,7 +15,7 @@ module "eks" {
 
   cluster_security_group_additional_rules = {
     vpn_access_443 = {
-      description              = "VPN clients to cluster API"
+      description              = "Allow VPN clients to access cluster API"
       protocol                 = "tcp"
       from_port                = 443
       to_port                  = 443
