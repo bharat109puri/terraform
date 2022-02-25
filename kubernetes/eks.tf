@@ -40,7 +40,7 @@ module "eks" {
     }
   }
 
-  enable_irsa = true # NOTE: IAM roles for service accounts
+  enable_irsa = true # NOTE: irsa: IAM roles for service accounts
 
   cluster_encryption_config = toset([{
     provider_key_arn = nonsensitive(data.tfe_outputs.bootstrap.values.eks_secret_encryption_key_arn)
