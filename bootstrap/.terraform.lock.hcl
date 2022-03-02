@@ -6,6 +6,8 @@ provider "registry.terraform.io/cloudposse/awsutils" {
   constraints = ">= 0.8.0"
   hashes = [
     "h1:1NXX8LEdIf7puHP2PbPCPByUHWZTj/H95c+3qxKJVEo=",
+    "h1:EJeBKsuptRJDc3vrxyLKoYU84LJ2b1KgFIJtJ0XnMVw=",
+    "h1:iau48+YcFlgjaE9yY3wIkTy9ZOb+/MGv8liMTJuzzYo=",
     "zh:04f73e0fe88aa9b49b61dfdcc3b1dadcaa28f3428887e026cb2b94816f9e4e01",
     "zh:20eaa637ac9ac1dbd6406777f0617f12528e955d1f3caaca462b3ae4a2088457",
     "zh:2835b4048192d474fe078d39cbee7d77d9cca893cbc2f4c73547448bff21abd2",
@@ -28,6 +30,8 @@ provider "registry.terraform.io/hashicorp/aws" {
   constraints = ">= 2.0.0, >= 3.0.0, >= 3.63.0, 3.70.0"
   hashes = [
     "h1:7rt5BdmiBJOFlNHstjwg2tDP4b+/+4sSvjz5ywP4HJE=",
+    "h1:E5IKHXzPGGSizZM5rHKzNCzpwQ7lWPXmmJnms82uzDk=",
+    "h1:jn4ImGMZJ9rQdaVSbcCBqUqnhRSpyaM1DivqaNuP+eg=",
     "zh:0af710e528e21b930899f0ac295b0ceef8ad7b623dd8f38e92c8ec4bc7af0321",
     "zh:4cabcd4519c0aae474d91ae67a8e3a4a8c39c3945c289a9cf7c1409f64409abe",
     "zh:58da1a436facb4e4f95cd2870d211ed7bcb8cf721a4a61970aa8da191665f2aa",
@@ -46,7 +50,9 @@ provider "registry.terraform.io/hashicorp/tfe" {
   version     = "0.28.1"
   constraints = "~> 0.27"
   hashes = [
+    "h1:PgumMb80c9XrmvGUES/B3jq7lUkT+b3Oxf1SC+3Ieg0=",
     "h1:vAITAyA3HVLjM2pseJ8lxveXLtbX4CK5hIcLHzLrUTA=",
+    "h1:vjVFQV+tgONY/mF1I8tt8tpuxCJ0oDvuc2W26SgNjoQ=",
     "zh:2c3f6ead7ff5111d2a7747a1167732a7caf6ed1a31e1d15046b54b2f3921aa6f",
     "zh:3044820f0bfb5207a87554c7fdf71f3ef08d0dd0c47be1ff855ce3c02f1cf54a",
     "zh:328896547cc04fc50df76b5980147e758947a56d498246884ede1fed5f4f6f81",
@@ -66,6 +72,8 @@ provider "registry.terraform.io/hashicorp/tls" {
   constraints = ">= 3.0.0"
   hashes = [
     "h1:U+kgPLboCrcs4eZV87esP7iydF8mjMyHKE/mDsrwfkQ=",
+    "h1:XTU9f6sGMZHOT8r/+LWCz2BZOPH127FBTPjMMEAAu1U=",
+    "h1:fUJX8Zxx38e2kBln+zWr1Tl41X+OuiE++REjrEyiOM4=",
     "zh:3d46616b41fea215566f4a957b6d3a1aa43f1f75c26776d72a98bdba79439db6",
     "zh:623a203817a6dafa86f1b4141b645159e07ec418c82fe40acd4d2a27543cbaa2",
     "zh:668217e78b210a6572e7b0ecb4134a6781cc4d738f4f5d09eb756085b082592e",
