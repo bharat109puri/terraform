@@ -1,3 +1,8 @@
+resource "aws_iam_saml_provider" "aws_sso_saml_provider" {
+  name                   = "aws_sso_saml_provider"
+  saml_metadata_document = file("client_vpn_saml_app_metadata.xml")
+}
+
 resource "aws_security_group" "vpn_clients" {
   name        = "vpn-clients"
   description = "VPN clients"
@@ -26,6 +31,9 @@ module "client_vpn" {
   ca_common_name     = "recrd.vpn.ca"
   root_common_name   = "recrd.vpn.client"
   server_common_name = "recrd.vpn.server"
+
+  authentication_type = "federated-authentication"
+  saml_provider_arn   = aws_iam_saml_provider.aws_sso_saml_provider.arn
 
   authorization_rules = [{
     authorize_all_groups = true

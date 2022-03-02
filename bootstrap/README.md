@@ -6,4 +6,9 @@ The outputs are used by other Terraform workspaces, you have to remove dependenc
 
 ## Known issues
 
-- Client VPN creation is slow, subnet associations might time out
+- Client VPN Endpoint creation is slow, subnet associations might time out.
+
+## Further docs
+
+- [Client VPN](client_vpn.md)
+
