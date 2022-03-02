@@ -1,8 +1,12 @@
-# AWS SSO had to be enabled manually
-# AWS SSO SAML app has been created manually
+# Pre-requisite manual steps:
+#  - Enabling AWS SSO and set up mandatory MFA for every login  # TODO: Shall we do context specific?
+#  - Created AWS SSO SAML App and added metadata xml to this directory
+#   name: AWS Client VPN (SAML App)
+#   id:   ins-09e3f2528b89c950
+
 resource "aws_iam_saml_provider" "aws_sso_saml_provider" {
   name                   = "aws_sso_saml_provider"
-  saml_metadata_document = file("vpn_saml_app_metadata.xml")
+  saml_metadata_document = file("client_vpn_saml_app_metadata.xml")
 }
 
 resource "aws_security_group" "vpn_clients" {
