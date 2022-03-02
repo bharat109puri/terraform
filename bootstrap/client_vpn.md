@@ -42,11 +42,11 @@ Currently terraform support is limited, users are provisioned via [AWS SSO Admin
    ```
 
 2. Once created, the user will receive an email with instructions for setting up an AWS account
-3. Please set up a new password and [configure MFA](https://docs.aws.amazon.com/singlesignon/latest/userguide/user-device-registration.html)
+3. Follow the instructions to set up the password and [configure MFA](https://docs.aws.amazon.com/singlesignon/latest/userguide/user-device-registration.html)
 4. Download and install the [AWS VPN Client](https://aws.amazon.com/vpn/client-vpn-download/)
 5. Download the profile configuration file from [here](recrd-client-vpn-profile-config.ovpn)
 6. Create a new profile called `Recrd Client VPN` using the file
-7. Initiate a connection to VPN. Log in via [Recrd AWS User Portal](https://d-9367775953.awsapps.com/start) in the browser window, which will open automatically
+7. Initiate a connection. Log in via [Recrd AWS User Portal](https://d-9367775953.awsapps.com/start) in the browser window, which will open automatically
 7. Private resources should now be accessible
 
 Docs:
@@ -59,7 +59,7 @@ Docs:
 2. If your problem is still unresolved, reach out to us via `#infra` slack channel
 
 #### TODO
-1. integrate authentication with G Suite
+1. Integrate authentication with G Suite
 
    Past investigations:
    - Currently not supported out of the box. See [details here](https://aws.amazon.com/blogs/security/how-to-use-g-suite-as-external-identity-provider-aws-sso/)
