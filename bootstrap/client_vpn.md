@@ -25,7 +25,7 @@ Currently terraform support is limited, users are provisioned via [AWS SSO Admin
    - Recrd Admins
    - Recrd Developers
    - Third Parties
-3. An email will be sent out to the user automatically with instructions to set up account with MFA
+3. An email will be sent out to the user automatically with instructions to set up the account
 
 ## User Guide
 
