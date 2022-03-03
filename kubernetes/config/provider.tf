@@ -33,4 +33,6 @@ provider "kubernetes" {
   config_path = "../kubeconfig.yaml"
 }
 
-provider "tfe" {}
+provider "tfe" {
+  token = var.tfe_token
+}

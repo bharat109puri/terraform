@@ -1,59 +1,16 @@
-locals {
-  aws_load_balancer_controller_name = "aws-load-balancer-controller"
-
-  oidc_sub = join(":", [trimprefix(data.tfe_outputs.kubernetes.values.cluster_oidc_issuer_url, "https://"), "sub"])
-
-  eks_addon_ecr = "602401143452.dkr.ecr.eu-west-1.amazonaws.com" # NOTE: https://docs.aws.amazon.com/eks/latest/userguide/add-ons-images.html
-}
-
 data "tfe_outputs" "kubernetes" {
   organization = "recrd"
   workspace    = "kubernetes"
 }
 
-data "aws_iam_policy_document" "oidc_assume_policy" {
-  statement {
-    actions = ["sts:AssumeRoleWithWebIdentity"]
+module "aws_load_balancer_controller_role" {
+  source = "../../modules/service_account_role"
 
-    principals {
-      type        = "Federated"
-      identifiers = [data.tfe_outputs.kubernetes.values.oidc_provider_arn]
-    }
+  name      = local.aws_load_balancer_controller_name
+  namespace = "kube-system"
 
-    condition {
-      test     = "StringEquals"
-      variable = local.oidc_sub
-      values   = ["system:serviceaccount:kube-system:${local.aws_load_balancer_controller_name}"]
-    }
-  }
-}
-
-resource "aws_iam_role" "aws_load_balancer_controller" {
-  name               = "AmazonEKSLoadBalancerControllerRole"
-  assume_role_policy = data.aws_iam_policy_document.oidc_assume_policy.json
-
-  inline_policy {
-    name = "AWSLoadBalancerControllerIAMPolicy"
-
-    # NOTE: https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.3.1/docs/install/iam_policy.json
-    policy = file("iam_policy.json")
-  }
-}
-
-resource "kubernetes_service_account" "aws_load_balancer_controller" {
-  metadata {
-    name      = local.aws_load_balancer_controller_name
-    namespace = "kube-system"
-
-    annotations = {
-      "eks.amazonaws.com/role-arn" = aws_iam_role.aws_load_balancer_controller.arn
-    }
-
-    labels = {
-      "app.kubernetes.io/component" = "controller"
-      "app.kubernetes.io/name"      = local.aws_load_balancer_controller_name
-    }
-  }
+  inline_policy     = file("policies/aws_load_balancer_controller.json")
+  oidc_provider_arn = data.tfe_outputs.kubernetes.values.oidc_provider_arn
 }
 
 resource "helm_release" "aws_load_balancer_controller" {
@@ -95,6 +52,6 @@ resource "helm_release" "aws_load_balancer_controller" {
   # TODO: enableCertManager ?
 
   depends_on = [
-    kubernetes_service_account.aws_load_balancer_controller,
+    module.aws_load_balancer_controller_role,
   ]
 }
