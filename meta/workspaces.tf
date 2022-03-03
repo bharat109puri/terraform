@@ -9,6 +9,7 @@ locals {
   }
 
   component_workspaces = {
+    nile  = "Notification Service",
     volga = "Kafka Choreographer",
   }
 }
