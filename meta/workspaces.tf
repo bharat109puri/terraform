@@ -1,10 +1,10 @@
 locals {
   # NOTE: Underscores are handled as subdirectories
   workspaces = {
-    bootstrap         = "[TEST] Bootstrap"
+    bootstrap         = "Bootstrap - base-level, rarely changing resources"
     example_cassandra = "[EXAMLPE] DataStax Astra - Serverless Cassandra"
-    kubernetes        = "[TEST] Kubernetes",
-    kubernetes_config = "[TEST] Kubernetes configuration and core services",
+    kubernetes        = "Kubernetes cluster - EKS resources",
+    kubernetes_config = "Kubernetes cluster - configuration and core services",
     users             = "AWS IAM users and roles",
   }
 
@@ -51,7 +51,7 @@ resource "tfe_workspace" "terraform_repo" {
 
   allow_destroy_plan    = false
   auto_apply            = false
-  execution_mode        = "local" # FIXME: AWS credentials
+  execution_mode        = "local" # TODO: AWS credentials
   file_triggers_enabled = true
   queue_all_runs        = true
   working_directory     = replace(each.key, "_", "/")

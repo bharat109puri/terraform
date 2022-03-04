@@ -3,14 +3,15 @@ terraform {
   required_providers {
     astra = {
       source  = "datastax/astra"
-      version = "~> 2.0"
+      version = "2.0.3"
     }
     aws = {
       source  = "hashicorp/aws"
       version = "3.70.0"
     }
     tfe = {
-      version = "~> 0.27"
+      source  = "hashicorp/tfe"
+      version = "0.28.1"
     }
   }
 }
@@ -20,7 +21,7 @@ provider "astra" {
 }
 
 provider "aws" {
-  region = "eu-west-1"
+  region = var.region
 }
 
 provider "tfe" {
