@@ -7,8 +7,8 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "18.0.6"
 
-  cluster_name    = "test"
-  cluster_version = "1.21"
+  cluster_name    = data.tfe_outputs.bootstrap.values.eks_cluster_name
+  cluster_version = var.eks_version
 
   cluster_endpoint_private_access = true
   cluster_endpoint_public_access  = false

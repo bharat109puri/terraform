@@ -30,5 +30,5 @@ Setting `instance_refresh_enabled = true` will recreate your worker nodes withou
 ## kubeconfig.yaml
 
 ```shell
-aws-vault exec recrd/admin -- aws eks update-kubeconfig --name test --dry-run > kubeconfig.yaml
+aws-vault exec recrd/admin -- aws eks update-kubeconfig --name prod-kubernetes --dry-run > kubeconfig.yaml
 ```

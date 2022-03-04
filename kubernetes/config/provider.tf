@@ -1,4 +1,3 @@
-# FIXME
 terraform {
   required_providers {
     aws = {
@@ -14,13 +13,14 @@ terraform {
       version = "2.7.1"
     }
     tfe = {
-      version = "~> 0.27"
+      source  = "hashicorp/tfe"
+      version = "0.28.1"
     }
   }
 }
 
 provider "aws" {
-  region = "eu-west-1"
+  region = var.region
 }
 
 provider "helm" {

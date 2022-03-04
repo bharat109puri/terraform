@@ -13,7 +13,7 @@ data "tfe_team" "owners" {
 
 resource "tfe_organization" "recrd" {
   name  = "recrd"
-  email = "mate@recrd.com" # FIXME
+  email = "platformoperations@recrd.com"
 
   collaborator_auth_policy = "two_factor_mandatory"
 }

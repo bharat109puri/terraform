@@ -15,7 +15,7 @@ resource "aws_security_group" "vpn_clients" {
 
 module "client_vpn" {
   source  = "cloudposse/ec2-client-vpn/aws"
-  version = "~> 0.10"
+  version = "0.10.10"
 
   vpc_id              = module.vpc.vpc_id
   client_cidr         = local.vpn_cidr

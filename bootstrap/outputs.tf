@@ -8,6 +8,11 @@ output "db_astradb_datastax_com_zone_id" {
   value       = aws_route53_zone.db_astradb_datastax_com.zone_id
 }
 
+output "eks_cluster_name" {
+  description = "Name of the EKS cluster used for subnet tagging (required for load balancer provisioning)"
+  value       = local.eks_cluster_name
+}
+
 output "eks_secret_encryption_key_arn" {
   description = "ARN of the KMS key used for encrypting Kubernetes Secrets"
   value       = aws_kms_key.eks.arn
