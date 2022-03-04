@@ -11,5 +11,5 @@ locals {
 
   dns_ip = cidrhost(var.vpc_cidr, 2)
 
-  availability_zones = slice(sort(data.aws_availability_zones.available.names), 0, 3) # NOTE: Requires 3 availability zones
+  availability_zones = slice(sort(data.aws_availability_zones.available.names), 0, 3) # NOTE: Will fail if region has less than 3 availability zones
 }
