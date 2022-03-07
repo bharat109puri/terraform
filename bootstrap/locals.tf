@@ -13,7 +13,8 @@ locals {
 
   availability_zones = slice(sort(data.aws_availability_zones.available.names), 0, 3) # NOTE: Will fail if region has less than 3 availability zones
 
-  # Cloudtrail
+  # CloudTrail
   cloudtrail_bucket_name = "recrd-cloudtrail"
   s3_key_prefix          = "management"
+  trail_name             = "management-trail"
 }

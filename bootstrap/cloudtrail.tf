@@ -1,10 +1,8 @@
 data "aws_caller_identity" "current" {}
 
-
 data "aws_iam_policy_document" "allow_cloudtrail_access" {
-
   statement {
-    sid = "AWSCloudTrailAclCheck20150319"
+    sid = "AWSCloudTrailAclCheck"
 
     principals {
       type        = "Service"
@@ -17,7 +15,7 @@ data "aws_iam_policy_document" "allow_cloudtrail_access" {
   }
 
   statement {
-    sid = "AWSCloudTrailWrite20150319"
+    sid = "AWSCloudTrailWrite"
 
     principals {
       type        = "Service"
@@ -43,37 +41,14 @@ data "aws_iam_policy_document" "allow_cloudtrail_access" {
       test     = "StringEquals"
       variable = "AWS:SourceArn"
 
-      values = [
-        "arn:aws:cloudtrail:eu-west-1:${data.aws_caller_identity.current.account_id}:trail/management_trail",
-      ]
+      values = ["arn:aws:cloudtrail:${var.region}:${data.aws_caller_identity.current.account_id}:trail/${local.trail_name}"]
     }
   }
 }
 
-resource "aws_cloudtrail" "management_trail" {
-  name = "management_trail"
-
-  include_global_service_events = true # to include IAM events
-  is_multi_region_trail         = true
-  enable_log_file_validation    = true
-  s3_bucket_name                = aws_s3_bucket.recrd_cloudtrail.id
-  s3_key_prefix                 = local.s3_key_prefix
-
-  event_selector {
-    read_write_type                  = "All"
-    include_management_events        = true
-    exclude_management_event_sources = ["kms.amazonaws.com", "rdsdata.amazonaws.com"] # high volume, aws recommendation
-  }
-}
-
-resource "aws_s3_bucket_policy" "allow_access_from_another_account" {
-  bucket = aws_s3_bucket.recrd_cloudtrail.id
-  policy = data.aws_iam_policy_document.allow_cloudtrail_access.json
-}
-
-resource "aws_s3_bucket" "recrd_cloudtrail" {
-  acl    = "private"
+resource "aws_s3_bucket" "cloudtrail" {
   bucket = local.cloudtrail_bucket_name
+  acl    = "private"
 
   server_side_encryption_configuration {
     rule {
@@ -88,3 +63,27 @@ resource "aws_s3_bucket" "recrd_cloudtrail" {
   }
 }
 
+resource "aws_s3_bucket_policy" "allow_cloudtrail_access" {
+  bucket = aws_s3_bucket.cloudtrail.id
+  policy = data.aws_iam_policy_document.allow_cloudtrail_access.json
+}
+
+resource "aws_cloudtrail" "management_trail" {
+  name = local.trail_name
+
+  include_global_service_events = true # NOTE: To include IAM events
+  is_multi_region_trail         = true
+  enable_log_file_validation    = true
+  s3_bucket_name                = aws_s3_bucket.cloudtrail.id
+  s3_key_prefix                 = local.s3_key_prefix
+
+  event_selector {
+    read_write_type                  = "All"
+    include_management_events        = true
+    exclude_management_event_sources = ["kms.amazonaws.com", "rdsdata.amazonaws.com"] # NOTE: High volume, AWS recommendation
+  }
+
+  depends_on = [
+    aws_s3_bucket_policy.allow_cloudtrail_access
+  ]
+}

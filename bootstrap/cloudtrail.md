@@ -1,6 +1,7 @@
-# Cloudtrail
+# CloudTrail
 
-Cloudtrail is enabled for all regions and logs to S3.
+CloudTrail is enabled for all regions and logs to S3.
 
-# TODO
- - Refactor cloudtrail config to a terraform module
+## TODO
+
+- Refactor `cloudtrail.tf` config to a Terraform module
