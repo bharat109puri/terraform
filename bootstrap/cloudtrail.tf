@@ -72,8 +72,8 @@ resource "aws_s3_bucket_policy" "allow_access_from_another_account" {
 }
 
 resource "aws_s3_bucket" "recrd_cloudtrail" {
-  acl           = "private"
-  bucket        = local.cloudtrail_bucket_name
+  acl    = "private"
+  bucket = local.cloudtrail_bucket_name
 
   server_side_encryption_configuration {
     rule {
