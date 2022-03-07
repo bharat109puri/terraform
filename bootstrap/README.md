@@ -11,3 +11,4 @@ The outputs are used by other Terraform workspaces, you have to remove dependenc
 ## Further docs
 
 - [Client VPN](client_vpn.md)
+- [CloudTrail](cloudtrail.md)
