@@ -1,15 +1,19 @@
-locals {
-  recrd_account_id = "378942204220"
-}
+module "iam_users" {
+  source = "../modules/iam_users"
 
-module "iam_assumable_roles" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-roles"
-  version = "4.13.2"
-
-  create_admin_role    = true
-  create_readonly_role = true
-
-  trusted_role_arns = [
-    "arn:aws:iam::${local.recrd_account_id}:root",
+  recrd_admins = [
+    "csilla@recrd.com",
+    "mate@recrd.com",
   ]
+
+  recrd_developers = [
+    "mate+developer@recrd.com",
+  ]
+
+  third_parties = {
+    riltech = [
+      "mate+riltech@gmail.com",
+    ]
+    rokk = []
+  }
 }
