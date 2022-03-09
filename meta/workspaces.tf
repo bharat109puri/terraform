@@ -9,6 +9,7 @@ locals {
   }
 
   component_workspaces = {
+    congo = "Content Creation and User Interests API",
     nile  = "Notification Service",
     volga = "Kafka Choreographer",
   }
