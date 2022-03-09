@@ -4,6 +4,7 @@ module "iam_users" {
   recrd_admins = [
     "csilla@recrd.com",
     "mate@recrd.com",
+    "murali@recrd.com",
   ]
 
   recrd_developers = [
