@@ -15,20 +15,20 @@ This keyspace is going to be named as `"default"`. **Do not use** this keyspace 
 
 The reason behind this convention is below in the known issues section.
 
-**Do not use** the `astra_keyspace` resource, using CQL is more suitable for now.
+**Do not use** the `astra_keyspace` resource to create keyspaces for applications, using CQL is more suitable for now.
+
+To be able to create a new database the `astra` provider needs to be configured with an API key of at least `Database Administrator` privileges.
 
 ## Known issues
 
 **The configured database has unrestricted public access** until it's changed manually through https://astra.datastax.com/ console.
-The `astra` provider doesn't support restricting public access and `astra_access_list` seems to be broken.
-
-DataStax support ticket: 00073817
+The `astra` provider doesn't support restricting public access. Even by creating an `astra_access_list` resource with the right privileges the database remains open until changed manually.
 
 The `astra` provider doesn't support changing the name of the main keyspace (created together with the database).
 An attempt to change it results in deletion of the database.
 
-If you remove a keyspace from the Terraform configuration, the `astra` provider is not removing the keyspace only from the Terraform space.
-If you try to recreate the same keyspace with terraform again, the creation is going to fail.
+If you remove a keyspace from the Terraform configuration, the `astra` provider is not removing the keyspace only from the Terraform state.
+If you try to recreate the same keyspace with Terraform again, the creation is going to fail.
 
 ## TODO
 
