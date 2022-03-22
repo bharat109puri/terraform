@@ -1,5 +1,5 @@
 locals {
-  ttl                = "300"
+  ttl                = "60"
   cloudfront_zone_id = "Z2FDTNDATAQYW2" # NOTE: This is the same string globally for all CloudFront aliases
 
   recrd_com_alias_a_records = {
