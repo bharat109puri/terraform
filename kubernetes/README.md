@@ -2,6 +2,58 @@
 
 https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html
 
+## How to run `kubectl` commands?
+
+Currently to run any `kubectl` command you have to:
+- be on the [Recrd client VPN][]
+- assume the `admin` IAM role ([aws-vault][] is recommended)
+- use a compatible [kubectl][] version (`1.20-1.22`)
+- use the checked-in [kubeconfig.yaml][] file
+
+[Recrd client VPN]: ../bootstrap/client_vpn.md
+[aws-vault]: https://github.com/99designs/aws-vault
+[kubeconfig.yaml]: ./kubeconfig.yaml
+[kubectl]: https://kubernetes.io/docs/tasks/tools/#kubectl
+
+### `kubectl get pods` example
+
+Connect to the VPN.
+
+```shell
+# Use PATH to kubeconfig.yaml
+export KUBECONFIG=~/git/recrd/terraform/kubernetes/kubeconfig.yaml
+# Assume `admin` role and run your `kubectl` command
+aws-vault exec recrd/admin -- kubectl get pods
+```
+
+### kustomize examples
+
+By convention various Recrd projects have `k8s/` and `k8s/secrets/` subdirectories.
+
+These directories hold [kustomize][] configurations.
+As a version of `kustomize` is always included in `kubectl` there's no need to install `kustomize` separately.
+
+[kustomize]: https://kustomize.io/
+
+#### Check changes
+
+```shell
+aws-vault exec recrd/admin -- kubectl diff -k k8s/
+```
+
+#### Apply manifests
+
+```shell
+aws-vault exec recrd/admin -- kubectl apply -k k8s/
+```
+
+#### Secret management
+
+Secrets must not be checked into version control.
+
+The current solution is making collaboration on secrets difficult.
+It's planned to be changed post launch.
+
 ## Advanced pod networking
 
 > You can implement a network segmentation and tenant isolation network policy. Network policies are similar to AWS security groups in that you can create network ingress and egress rules. Instead of assigning instances to a security group, you assign network policies to pods using pod selectors and labels. For more information, see [Installing Calico on Amazon EKS](https://docs.aws.amazon.com/eks/latest/userguide/calico.html).
