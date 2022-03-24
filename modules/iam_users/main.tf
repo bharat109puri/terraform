@@ -55,6 +55,22 @@ module "iam_assumable_roles" {
   ]
 }
 
+module "iam_assumable_role_RecrdDeveloper" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
+  version = "4.13.2"
+
+  create_role = true
+  role_name   = "RecrdDeveloper"
+
+  trusted_role_arns = [
+    "arn:aws:iam::${data.aws_caller_identity.current.id}:root",
+  ]
+
+  custom_role_policy_arns = [
+    # TODO: What permissions does RecrdDeveloper need?
+  ]
+}
+
 module "iam_assumable_role_ThirdPartyRiltech" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
   version = "4.13.2"
@@ -101,6 +117,18 @@ module "iam_group_RecrdAdmin" {
     module.iam_assumable_role_ThirdPartyRokk.iam_role_arn,
   ]
   group_users = keys(module.iam_user_admins)
+}
+
+module "iam_group_RecrdDeveloper" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-group-with-assumable-roles-policy"
+  version = "4.13.2"
+
+  name = "RecrdDeveloper"
+
+  assumable_roles = [
+    module.iam_assumable_role_RecrdDeveloper.iam_role_arn,
+  ]
+  group_users = keys(module.iam_user_developers)
 }
 
 module "iam_group_Everyone" {
