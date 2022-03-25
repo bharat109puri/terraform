@@ -1,10 +1,10 @@
 variable "recrd_admins" {
-  description = "List of email addresses used as user name for admins. Specify only `@recrd.com` emails"
+  description = "List of `admin` email addresses. Specify only `@recrd.com` emails"
   type        = list(string)
 }
 
 variable "recrd_developers" {
-  description = "List of email addresses used as user name for Recrd Developers. Specify only `@recrd.com` emails"
+  description = "List of `developer` email addresses. Specify only `@recrd.com` emails"
   type        = list(string)
   default     = []
 }

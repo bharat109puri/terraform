@@ -18,13 +18,13 @@ This module defines the standard way of creating IAM Users, Groups, Roles and th
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_recrd_admins"></a> [recrd\_admins](#input\_recrd\_admins) | List of email addresses used as user name for admins. Specify only `@recrd.com` emails | `list(string)` | n/a | yes |
-| <a name="input_recrd_developers"></a> [recrd\_developers](#input\_recrd\_developers) | List of email addresses used as user name for Recrd Developers. Specify only `@recrd.com` emails | `list(string)` | `[]` | no |
+| <a name="input_recrd_admins"></a> [recrd\_admins](#input\_recrd\_admins) | List of `admin` email addresses. Specify only `@recrd.com` emails | `list(string)` | n/a | yes |
+| <a name="input_recrd_developers"></a> [recrd\_developers](#input\_recrd\_developers) | List of `developer` email addresses. Specify only `@recrd.com` emails | `list(string)` | `[]` | no |
 | <a name="input_third_parties"></a> [third\_parties](#input\_third\_parties) | Map to define third party access | <pre>map(object({<br>    emails      = list(string)<br>    policy_arns = list(string)<br>  }))</pre> | `{}` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_RecrdDeveloper_role_arn"></a> [RecrdDeveloper\_role\_arn](#output\_RecrdDeveloper\_role\_arn) | ARN of RecrdDeveloper IAM role |
+| <a name="output_developer_role_arn"></a> [developer\_role\_arn](#output\_developer\_role\_arn) | ARN of `developer` IAM role |
 <!-- END_TF_DOCS -->

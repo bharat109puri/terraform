@@ -1,39 +1,39 @@
-module "iam_group_RecrdAdmin" {
+module "iam_group_admin" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-group-with-assumable-roles-policy"
   version = "4.13.2"
 
-  name = "RecrdAdmin"
+  name = "admin"
 
-  # NOTE: RecrdAdmin group members should be able to assume any roles
+  # NOTE: `admin` group members should be able to assume any roles
   assumable_roles = concat(
     [
       module.iam_assumable_roles.admin_iam_role_arn,
       module.iam_assumable_roles.readonly_iam_role_arn,
-      module.iam_assumable_role_RecrdDeveloper.iam_role_arn,
+      module.iam_assumable_role_developer.iam_role_arn,
     ],
     [for role in module.iam_assumable_role_third_party : role.iam_role_arn],
   )
   group_users = keys(module.iam_user_admins)
 }
 
-module "iam_group_RecrdDeveloper" {
+module "iam_group_developer" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-group-with-assumable-roles-policy"
   version = "4.13.2"
 
-  name = "RecrdDeveloper"
+  name = "developer"
 
   assumable_roles = [
-    module.iam_assumable_role_RecrdDeveloper.iam_role_arn,
+    module.iam_assumable_role_developer.iam_role_arn,
     module.iam_assumable_roles.readonly_iam_role_arn,
   ]
   group_users = keys(module.iam_user_developers)
 }
 
-module "iam_group_Everyone" {
+module "iam_group_everyone" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-group-with-assumable-roles-policy"
   version = "4.13.2"
 
-  name            = "Everyone"
+  name            = "everyone"
   assumable_roles = [module.iam_assumable_roles.readonly_iam_role_arn]
 
   group_users = concat(

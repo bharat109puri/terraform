@@ -12,7 +12,7 @@ locals {
           kubernetes_cluster_role_binding_v1.view.subject[0].name,
           kubernetes_role_binding_v1.default_deploy.subject[0].name,
         ])
-        rolearn  = nonsensitive(data.tfe_outputs.users.values.RecrdDeveloper_role_arn)
+        rolearn  = nonsensitive(data.tfe_outputs.users.values.developer_role_arn)
         username = "developer"
       }
     ],

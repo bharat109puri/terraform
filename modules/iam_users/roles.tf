@@ -1,4 +1,4 @@
-# NOTE: Update `module iam_group_RecrdAdmin`'s `assumable_roles` when adding a new role
+# NOTE: Update `module.iam_group_admin`'s `assumable_roles` when adding a new role
 data "aws_caller_identity" "current" {}
 
 module "iam_assumable_roles" {
@@ -13,19 +13,19 @@ module "iam_assumable_roles" {
   ]
 }
 
-module "iam_assumable_role_RecrdDeveloper" {
+module "iam_assumable_role_developer" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
   version = "4.13.2"
 
   create_role = true
-  role_name   = "RecrdDeveloper"
+  role_name   = "developer"
 
   trusted_role_arns = [
     "arn:aws:iam::${data.aws_caller_identity.current.id}:root",
   ]
 
   custom_role_policy_arns = [
-    # TODO: What permissions does RecrdDeveloper need?
+    # TODO: What permissions does `developer` need?
   ]
 }
 
