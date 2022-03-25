@@ -1,6 +1,6 @@
+# NOTE: Update `module iam_group_RecrdAdmin`'s `assumable_roles` when adding a new role
 data "aws_caller_identity" "current" {}
 
-# NOTE: Update `module iam_group_RecrdAdmin`'s `assumable_roles` when adding a new role
 module "iam_assumable_roles" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-roles"
   version = "4.13.2"
@@ -29,34 +29,20 @@ module "iam_assumable_role_RecrdDeveloper" {
   ]
 }
 
-module "iam_assumable_role_ThirdPartyRiltech" {
+module "iam_assumable_role_third_party" {
+  for_each = toset(keys(var.third_parties))
+
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
   version = "4.13.2"
 
   create_role = true
-  role_name   = "ThirdPartyRiltech"
+  role_name   = "third-party-${each.value}"
 
   trusted_role_arns = [
     "arn:aws:iam::${data.aws_caller_identity.current.id}:root",
   ]
 
   custom_role_policy_arns = [
-    # TODO: What permissions does Riltech need?
-  ]
-}
-
-module "iam_assumable_role_ThirdPartyRokk" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
-  version = "4.13.2"
-
-  create_role = true
-  role_name   = "ThirdPartyRokk"
-
-  trusted_role_arns = [
-    "arn:aws:iam::${data.aws_caller_identity.current.id}:root",
-  ]
-
-  custom_role_policy_arns = [
-    # TODO: What permissions does Rokk need?
+    # FIXME: Add policy ARNs to var.third_parties
   ]
 }
