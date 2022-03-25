@@ -113,6 +113,7 @@ module "iam_group_RecrdAdmin" {
   assumable_roles = [
     module.iam_assumable_roles.admin_iam_role_arn,
     module.iam_assumable_roles.readonly_iam_role_arn,
+    module.iam_assumable_role_RecrdDeveloper.iam_role_arn,
     module.iam_assumable_role_ThirdPartyRiltech.iam_role_arn,
     module.iam_assumable_role_ThirdPartyRokk.iam_role_arn,
   ]
