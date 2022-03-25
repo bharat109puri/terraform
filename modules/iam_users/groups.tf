@@ -11,7 +11,7 @@ module "iam_group_RecrdAdmin" {
       module.iam_assumable_roles.readonly_iam_role_arn,
       module.iam_assumable_role_RecrdDeveloper.iam_role_arn,
     ],
-    [ for role in module.iam_assumable_role_third_party : role.iam_role_arn ],
+    [for role in module.iam_assumable_role_third_party : role.iam_role_arn],
   )
   group_users = keys(module.iam_user_admins)
 }
@@ -52,5 +52,5 @@ module "iam_group_third_party" {
   name            = "third-party-${each.value}"
   assumable_roles = [module.iam_assumable_role_third_party[each.value].iam_role_arn]
 
-  group_users = var.third_parties[each.value]
+  group_users = var.third_parties[each.value].emails
 }

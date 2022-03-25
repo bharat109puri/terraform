@@ -6,5 +6,6 @@ output:
 sections:
   hide:
     - data-sources
+    - modules
     - providers
     - resources

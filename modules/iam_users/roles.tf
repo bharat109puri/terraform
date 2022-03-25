@@ -42,7 +42,5 @@ module "iam_assumable_role_third_party" {
     "arn:aws:iam::${data.aws_caller_identity.current.id}:root",
   ]
 
-  custom_role_policy_arns = [
-    # FIXME: Add policy ARNs to var.third_parties
-  ]
+  custom_role_policy_arns = var.third_parties[each.value].policy_arns
 }

@@ -10,7 +10,10 @@ variable "recrd_developers" {
 }
 
 variable "third_parties" {
-  description = "Map to define third party access. Stucture: {\"third_party_name\" = [\"email_1\"], \"email_2\"}"
-  type        = map(list(string))
-  default     = {}
+  description = "Map to define third party access"
+  type = map(object({
+    emails      = list(string)
+    policy_arns = list(string)
+  }))
+  default = {}
 }
