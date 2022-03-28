@@ -7,11 +7,11 @@ It's not a definitive guide, it's not ready and please speak up if you have a be
 ## Kubernetes cheat sheet
 
 What?                                  | How?
----------------------------------------|------------------------------------------------------------------------------
-Read logs                              | aws-vault exec recrd/developer -- kubectl logs --follow --selector=app=danube
-Restart all pods within the deployment | aws-vault exec recrd/developer -- kubectl rollout restart deployment danube
-Check diff between code and state      | aws-vault exec recrd/developer -- kubectl diff -k k8s/
-Apply application deployment changes   | aws-vault exec recrd/developer -- kubectl apply -k k8s/
+---------------------------------------|--------------------------------------------------------------------------------
+Read logs                              | `aws-vault exec recrd/developer -- kubectl logs --follow --selector=app=danube`
+Restart all pods within the deployment | `aws-vault exec recrd/developer -- kubectl rollout restart deployment danube`
+Check diff between code and state      | `aws-vault exec recrd/developer -- kubectl diff -k k8s/`
+Apply application deployment changes   | `aws-vault exec recrd/developer -- kubectl apply -k k8s/`
 
 ## Application repo layout
 
