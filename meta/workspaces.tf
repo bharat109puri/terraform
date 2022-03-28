@@ -60,6 +60,10 @@ resource "tfe_workspace" "terraform_repo" {
     identifier     = "RecrdGroup/terraform"
     oauth_token_id = data.tfe_oauth_client.github_recrd_group.oauth_token_id
   }
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "tfe_workspace" "component_repos" {
@@ -80,6 +84,10 @@ resource "tfe_workspace" "component_repos" {
   vcs_repo {
     identifier     = "RecrdGroup/${each.key}"
     oauth_token_id = data.tfe_oauth_client.github_recrd_group.oauth_token_id
+  }
+
+  lifecycle {
+    prevent_destroy = true
   }
 }
 
