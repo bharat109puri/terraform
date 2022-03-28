@@ -9,9 +9,10 @@ locals {
   }
 
   component_workspaces = {
-    congo = "Content Creation and User Interests API",
-    nile  = "Notification Service",
-    volga = "Kafka Choreographer",
+    congo  = "Content Creation and User Interests API",
+    danube = "Authentication Service",
+    nile   = "Notification Service",
+    volga  = "Kafka Choreographer",
   }
 }
 
