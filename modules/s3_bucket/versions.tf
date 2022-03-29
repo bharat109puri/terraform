@@ -4,7 +4,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 3.70"
+      version = ">= 3.70, < 4.0.0" # FIXME: Upgrade to v4
     }
   }
 }
