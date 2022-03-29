@@ -25,7 +25,7 @@ module "iam_assumable_role_developer" {
   ]
 
   custom_role_policy_arns = [
-    # TODO: What permissions does `developer` need?
+    aws_iam_policy.deploy_web_frontend.arn,
   ]
 }
 
