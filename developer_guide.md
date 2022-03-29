@@ -85,6 +85,7 @@ brew install --cask aws-vault aws-vpn-client
    [profile recrd]
    mfa_serial=arn:aws:iam::378942204220:mfa/<your_recrd_email_address>
    role_session_name=<your_recrd_email_address>
+   region=eu-west-1
 
    [profile recrd/developer]
    include_profile=recrd
