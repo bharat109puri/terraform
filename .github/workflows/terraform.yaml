@@ -1,0 +1,37 @@
+name: terraform
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  detect_entrypoints:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - id: matrix
+        run: echo "::set-output name=value::$(git ls-files *.tf | xargs -I{} dirname {} | sort | uniq | jq --raw-input | jq --slurp --compact-output)"
+    outputs:
+      matrix: ${{ steps.matrix.outputs.value }}
+
+  validate:
+    needs: detect_entrypoints
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        value: ${{fromJson(needs.detect_entrypoints.outputs.matrix)}}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Terraform common steps
+        uses: ./.github/actions/terraform-common
+
+      # NOTE: Workaround for https://github.com/hashicorp/terraform/issues/28490
+      - uses: bendrucker/terraform-configuration-aliases-action@v1
+        with:
+          path: ${{ matrix.value }}
+
+      - run: terraform -chdir=${{ matrix.value }} init -backend=false
+      - run: terraform -chdir=${{ matrix.value }} fmt -check -diff
+      - run: terraform -chdir=${{ matrix.value }} validate

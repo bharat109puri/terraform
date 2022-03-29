@@ -5,12 +5,17 @@ locals {
     example_cassandra = "[EXAMLPE] DataStax Astra - Serverless Cassandra"
     kubernetes        = "Kubernetes cluster - EKS resources",
     kubernetes_config = "Kubernetes cluster - configuration and core services",
+    services          = "Common and shared resources for services",
     users             = "AWS IAM users and roles",
   }
 
   component_workspaces = {
-    nile  = "Notification Service",
-    volga = "Kafka Choreographer",
+    Web-FrontEnd = "Web frontend",
+    congo        = "Content Creation and User Interests API",
+    danube       = "Authentication Service",
+    nile         = "Notification Service",
+    shared-data  = "Shared Data",
+    volga        = "Kafka Choreographer",
   }
 }
 
@@ -60,6 +65,10 @@ resource "tfe_workspace" "terraform_repo" {
     identifier     = "RecrdGroup/terraform"
     oauth_token_id = data.tfe_oauth_client.github_recrd_group.oauth_token_id
   }
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "tfe_workspace" "component_repos" {
@@ -80,6 +89,10 @@ resource "tfe_workspace" "component_repos" {
   vcs_repo {
     identifier     = "RecrdGroup/${each.key}"
     oauth_token_id = data.tfe_oauth_client.github_recrd_group.oauth_token_id
+  }
+
+  lifecycle {
+    prevent_destroy = true
   }
 }
 

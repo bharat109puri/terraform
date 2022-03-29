@@ -1,0 +1,15 @@
+name: Terraform common steps
+description: Setup Terraform
+
+runs:
+  using: composite
+  steps:
+    - name: Read .terraform-version
+      id: terraform_version
+      uses: juliangruber/read-file-action@v1
+      with:
+        path: .terraform-version
+        trim: true
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: ${{ steps.terraform_version.outputs.content }}
