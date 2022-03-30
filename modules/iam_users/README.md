@@ -27,4 +27,5 @@ This module defines the standard way of creating IAM Users, Groups, Roles and th
 | Name | Description |
 |------|-------------|
 | <a name="output_developer_role_arn"></a> [developer\_role\_arn](#output\_developer\_role\_arn) | ARN of `developer` IAM role |
+| <a name="output_developer_role_name"></a> [developer\_role\_name](#output\_developer\_role\_name) | Name of `developer` IAM role |
 <!-- END_TF_DOCS -->
