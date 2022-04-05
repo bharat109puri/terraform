@@ -9,14 +9,12 @@ module "iam_users" {
   recrd_developers = [
     "alex@recrd.com",
     "alexey@recrd.com",
-    "mate+developer@recrd.com",
+    "luis@recrd.com",
   ]
 
   third_parties = {
     riltech = {
-      emails = [
-        "mate+riltech@gmail.com",
-      ]
+      emails = []
       policy_arns = [
         aws_iam_policy.list_buckets.arn
       ]
