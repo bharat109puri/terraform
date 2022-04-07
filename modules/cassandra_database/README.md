@@ -65,4 +65,5 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_database_id"></a> [database\_id](#output\_database\_id) | AstraDB database ID |
+| <a name="output_organization_id"></a> [organization\_id](#output\_organization\_id) | AstraDB organization ID |
 <!-- END_TF_DOCS -->
