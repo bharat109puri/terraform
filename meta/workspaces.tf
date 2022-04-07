@@ -2,7 +2,6 @@ locals {
   # NOTE: Underscores are handled as subdirectories
   workspaces = {
     bootstrap         = "Bootstrap - base-level, rarely changing resources"
-    example_cassandra = "[EXAMLPE] DataStax Astra - Serverless Cassandra"
     kubernetes        = "Kubernetes cluster - EKS resources",
     kubernetes_config = "Kubernetes cluster - configuration and core services",
     services          = "Common and shared resources for services",
