@@ -11,6 +11,7 @@ locals {
 
   component_workspaces = {
     Web-FrontEnd = "Web frontend",
+    angara       = "Orchestrator",
     congo        = "Content Creation and User Interests API",
     danube       = "Authentication Service",
     nile         = "Notification Service",
