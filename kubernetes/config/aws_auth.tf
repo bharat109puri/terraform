@@ -61,6 +61,12 @@ resource "kubernetes_role_v1" "deploy" {
     resources  = ["deployments"]
     verbs      = ["patch"]
   }
+
+  rule {
+    api_groups = ["bitnami.com"]
+    resources  = ["sealedsecrets"]
+    verbs      = ["get", "list", "patch", "watch"]
+  }
 }
 
 resource "kubernetes_role_binding_v1" "default_deploy" {
