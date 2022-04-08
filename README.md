@@ -2,6 +2,10 @@
 
 Terraform configuration for the Recrd base infrastructure
 
+## Developer guide
+
+[You can find the developer guide here](./developer_guide.md)
+
 ## Plan
 
 ```shell
