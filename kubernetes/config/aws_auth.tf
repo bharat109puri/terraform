@@ -57,6 +57,12 @@ resource "kubernetes_role_v1" "deploy" {
   }
 
   rule {
+    api_groups = [""]
+    resources  = ["configmaps"]
+    verbs      = ["patch"]
+  }
+
+  rule {
     api_groups = ["apps"]
     resources  = ["deployments"]
     verbs      = ["patch"]
