@@ -3,6 +3,7 @@ locals {
     "angara",
     "congo",
     "danube",
+    "elba",
     "indus",
     "nile",
   ])
