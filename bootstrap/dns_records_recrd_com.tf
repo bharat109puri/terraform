@@ -3,10 +3,6 @@ locals {
   cloudfront_zone_id = "Z2FDTNDATAQYW2" # NOTE: This is the same string globally for all CloudFront aliases
 
   recrd_com_alias_a_records = {
-    "recrd.com" = {
-      alias_name    = "dhxlk0oi2m0rx.cloudfront.net.",
-      alias_zone_id = local.cloudfront_zone_id,
-    },
     "beta-api.recrd.com" = {
       alias_name    = "d-zu4mvhzhfk.execute-api.eu-west-2.amazonaws.com.",
       alias_zone_id = "ZJ5UAJN8Y3Z2Q",
@@ -19,10 +15,6 @@ locals {
       alias_name    = "d2frhyzbkg7yr0.cloudfront.net.",
       alias_zone_id = local.cloudfront_zone_id,
     },
-    "www.recrd.com" = {
-      alias_name    = "dhxlk0oi2m0rx.cloudfront.net.",
-      alias_zone_id = local.cloudfront_zone_id,
-    }
   }
 
   recrd_com_alias_aaaa_records = {
