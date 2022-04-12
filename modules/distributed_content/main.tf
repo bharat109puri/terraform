@@ -7,7 +7,7 @@ resource "aws_cloudfront_origin_access_identity" "this" {
 }
 
 resource "aws_cloudfront_distribution" "this" {
-  aliases = [local.fqdn]
+  aliases = concat([local.fqdn], var.aliases)
 
   price_class = "PriceClass_100" # FIXME
 
@@ -71,6 +71,20 @@ resource "aws_cloudfront_distribution" "this" {
   #  prefix          = "cloudfront"
   #  include_cookies = false
   #}
+}
+
+resource "aws_route53_record" "aliases" {
+  for_each = toset(var.aliases)
+
+  zone_id = var.zone_id
+  name    = each.value
+  type    = "A"
+
+  alias {
+    name                   = aws_cloudfront_distribution.this.domain_name
+    zone_id                = aws_cloudfront_distribution.this.hosted_zone_id
+    evaluate_target_health = false
+  }
 }
 
 resource "aws_route53_record" "distribution" {
