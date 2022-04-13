@@ -13,6 +13,7 @@ locals {
     angara       = "Orchestrator",
     congo        = "Content Creation and User Interests API",
     danube       = "Authentication Service",
+    godavari     = "Analytics Engine",
     nile         = "Notification Service",
     shared-data  = "Shared Data",
     volga        = "Kafka Choreographer",
