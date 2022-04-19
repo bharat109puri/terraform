@@ -7,6 +7,7 @@ locals {
     "hello-world",
     "indus",
     "nile",
+    "recrd-cli",
   ])
 }
 
