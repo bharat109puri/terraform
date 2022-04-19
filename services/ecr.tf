@@ -4,6 +4,7 @@ locals {
     "congo",
     "danube",
     "elba",
+    "hello-world",
     "indus",
     "nile",
   ])
