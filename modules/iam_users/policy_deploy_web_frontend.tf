@@ -6,8 +6,11 @@ data "aws_iam_policy_document" "deploy_web_frontend" {
   }
 
   statement {
-    actions   = ["s3:ListBucket"]
-    resources = ["arn:aws:s3:::recrd-web-frontend"]
+    actions = ["s3:ListBucket"]
+    resources = [
+      "arn:aws:s3:::recrd-web-frontend",
+      "arn:aws:s3:::recrd-web-frontend-staging",
+    ]
   }
 
   statement {
@@ -18,7 +21,10 @@ data "aws_iam_policy_document" "deploy_web_frontend" {
       "s3:PutObject",
       "s3:PutObjectAcl",
     ]
-    resources = ["arn:aws:s3:::recrd-web-frontend/*"]
+    resources = [
+      "arn:aws:s3:::recrd-web-frontend-staging/*",
+      "arn:aws:s3:::recrd-web-frontend/*",
+    ]
   }
 }
 
