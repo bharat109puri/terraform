@@ -52,7 +52,10 @@ This configuration defines IAM Users and their access.
     4. Sign out
     5. Log back in with your new password and MFA
 
-    Your user has very limited access, please assume the appropriate role to see/manage any services or resources. See [documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-console.html) for more details.
+    Your user has very limited access, please assume the appropriate role to see/manage any services or resources.
+
+    Continue setting up your workstation following the AWS access section of the developer guide:
+    https://github.com/RecrdGroup/terraform/blob/master/developer_guide.md#aws-access
 
     In case you have an issue or you received this email as an error, please contact us via `#infra` on Slack.
    </Details>
