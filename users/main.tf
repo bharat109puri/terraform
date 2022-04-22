@@ -11,6 +11,7 @@ module "iam_users" {
     "alexey@recrd.com",
     "anton@recrd.com",
     "luis@recrd.com",
+    "mac@recrd.com",
   ]
 
   third_parties = {
