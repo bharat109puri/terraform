@@ -23,6 +23,11 @@ output "eks_subnet_ids" {
   value       = module.vpc.intra_subnets
 }
 
+output "nat_public_ips" {
+  description = "List of NAT Gateway IP addresses used (private subnet external IPs)"
+  value       = module.vpc.nat_public_ips
+}
+
 output "private_subnet_cidr_blocks" {
   description = "List of private subnet cidr_blocks"
   value       = module.vpc.private_subnets_cidr_blocks

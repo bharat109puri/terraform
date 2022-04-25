@@ -55,6 +55,8 @@ resource "aws_cloudfront_distribution" "this" {
     }
   }
 
+  web_acl_id = one(aws_wafv2_web_acl.this[*].arn)
+
   viewer_certificate {
     acm_certificate_arn = module.acm.acm_certificate_arn
     ssl_support_method  = "sni-only"
