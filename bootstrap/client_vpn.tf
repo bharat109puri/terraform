@@ -24,7 +24,7 @@ module "client_vpn" {
   logging_stream_name = "client-vpn"
   associated_subnets  = module.vpc.private_subnets
   dns_servers         = [local.dns_ip]
-  split_tunnel        = true
+  split_tunnel        = false
 
   associated_security_group_ids = [aws_security_group.vpn_clients.id]
 
@@ -40,6 +40,16 @@ module "client_vpn" {
     description          = "all"
     target_network_cidr  = "0.0.0.0/0" # FIXME: All, full VPC, private subnets, VPC endpoints?
   }]
+
+  additional_routes = [
+    # NOTE: Routes for non-split VPN
+    for subnet_id in module.vpc.private_subnets :
+    {
+      destination_cidr_block = "0.0.0.0/0"
+      description            = "Default Route (via NAT Gateways)"
+      target_vpc_subnet_id   = subnet_id
+    }
+  ]
 
   tags = {
     Name = "client-vpn"
