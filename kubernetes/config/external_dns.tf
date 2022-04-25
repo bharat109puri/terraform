@@ -28,6 +28,11 @@ resource "helm_release" "external_dns_controller" {
   }
 
   set {
+    name  = "policy"
+    value = "sync"
+  }
+
+  set {
     name  = "serviceAccount.create"
     value = false
   }
