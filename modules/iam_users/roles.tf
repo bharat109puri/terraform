@@ -25,10 +25,6 @@ module "iam_assumable_role_developer" {
   ]
 
   attach_readonly_policy = true
-
-  custom_role_policy_arns = [
-    aws_iam_policy.deploy_web_frontend.arn,
-  ]
 }
 
 module "iam_assumable_role_third_party" {
