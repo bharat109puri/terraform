@@ -35,5 +35,6 @@ This module configures an S3 bucket and distributes it using CloudFront.
 | Name | Description |
 |------|-------------|
 | <a name="output_bucket_name"></a> [bucket\_name](#output\_bucket\_name) | Name of the CloudFront origin bucket |
+| <a name="output_distribution_arn"></a> [distribution\_arn](#output\_distribution\_arn) | ARN of the CloudFront distribution |
 | <a name="output_endpoint"></a> [endpoint](#output\_endpoint) | HTTP endpoint of the CloudFront distribution |
 <!-- END_TF_DOCS -->
