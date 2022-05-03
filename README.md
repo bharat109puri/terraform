@@ -1,25 +1,46 @@
-# Terraform [WIP]
+# Terraform
 
 Terraform configuration for the Recrd base infrastructure
+
+## Base infrastructure
+
+These components are not strictly related to any services or it's more convenient to manage them centrally (e.g. ECR repositories).
+
+Resources related to a specific service are kept in the repository of that service. By convention under the `terraform` subdirectory.
+See an example in [congo][].
+
+These "satellite" Terraform workspaces are usually depending on one or more "base" workspaces.
+
+[congo]: https://github.com/RecrdGroup/congo/tree/main/terraform
 
 ## Developer guide
 
 [You can find the developer guide here](./developer_guide.md)
 
+## Terraform Cloud
+
+Terraform Cloud is being used as a remote state at the moment. Plans are `local`, which means necessary secrets must be supplied locally.
+
+Secrets can be specified at runtime, but it's not convenient. It's possible to export them as environment variables like `TF_VAR_TFE_TOKEN` or add them as HCL variables to `*.auto.tfvars` files which are not tracked.
+
+### Future plans
+
+It's planned to switch to the paid `Team & Governance` tier of Terraform Cloud, which allows us to host our own Terraform agents on Kubernetes eliminating the need for using long-living AWS API keys.
+
+This is required for `remote` plans and triggers between workspaces to allow changes to ripple through the affected downstream workspaces.
+
+Further reading on managing credentials in Terraform Cloud can be found [here][managing_credentials].
+
+[managing_credentials]: https://www.hashicorp.com/blog/managing-credentials-in-terraform-cloud-and-enterprise
+
 ## Plan
 
 ```shell
 cd users
-aws-vault exec recrd/admin -- terragrunt plan
+aws-vault exec recrd/admin -- terraform plan
 ```
 
-## Terragrunt vs Terraform Cloud
-
-We need to decide which one to use.
-
-Currently there are traces of Terragrunt, but the code is prepared to be ready to be used with Terraform Cloud.
-
-### Update process
+## Update process
 
 We need to define how to update:
 - providers
@@ -27,7 +48,18 @@ We need to define how to update:
 
 Currently each version is managed inside the workspace.
 
+### AWS provider version 4
+
+In an early phase of the project v4 of the AWS Terraform provider was released.
+We opted for using the stable v3, but we need to upgrade to v4 eventually.
+
+[Jira ticket][v4_upgrade]
+
+[v4_upgrade]: https://recrd.atlassian.net/browse/UT-40
+
 ## Lock files
+
+Lock files are platform dependent, but can support multiple platforms at once, we need to keep maintaining multiple platforms as long as we run `local` plans on different OSes and architectures.
 
 You only need to do this on new workspaces and when providers are getting updated.
 
@@ -52,5 +84,4 @@ If required they can be locked to a specific version during the provider update 
 ## Links
 
 - [Terraform](https://www.terraform.io/)
-- [Terragrunt](https://terragrunt.gruntwork.io/)
 - [aws-vault](https://github.com/99designs/aws-vault)
