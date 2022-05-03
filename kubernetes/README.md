@@ -22,9 +22,11 @@ Connect to the VPN.
 ```shell
 # Use PATH to kubeconfig.yaml
 export KUBECONFIG=~/git/recrd/terraform/kubernetes/kubeconfig.yaml
-# Assume `admin` role and run your `kubectl` command
-aws-vault exec recrd/admin -- kubectl get pods
+# Assume `developer` role and run your `kubectl` command
+aws-vault exec recrd/developer -- kubectl get pods
 ```
+
+Managing sensitive and critical resources requires using the `recrd/admin` role.
 
 ### kustomize examples
 
@@ -38,13 +40,15 @@ As a version of `kustomize` is always included in `kubectl` there's no need to i
 #### Check changes
 
 ```shell
-aws-vault exec recrd/admin -- kubectl diff -k k8s/
+aws-vault exec recrd/developer -- kubectl diff -k k8s/
 ```
+
+If there's a change `developer` is not allowed to make, diff is going to fail.
 
 #### Apply manifests
 
 ```shell
-aws-vault exec recrd/admin -- kubectl apply -k k8s/
+aws-vault exec recrd/developer -- kubectl apply -k k8s/
 ```
 
 #### Secret management
@@ -82,5 +86,5 @@ Setting `instance_refresh_enabled = true` will recreate your worker nodes withou
 ## kubeconfig.yaml
 
 ```shell
-aws-vault exec recrd/admin -- aws eks update-kubeconfig --name prod-kubernetes --dry-run > kubeconfig.yaml
+aws-vault exec recrd/developer -- aws eks update-kubeconfig --name prod-kubernetes --dry-run > kubeconfig.yaml
 ```
