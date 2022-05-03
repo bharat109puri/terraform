@@ -12,3 +12,9 @@ variable "repo_name" {
   description = "GitHub repo name (without `RecrdGroup/` organisation)"
   type        = string
 }
+
+variable "role_suffix" {
+  description = "Role name suffix"
+  type        = string
+  default     = "github-actions"
+}

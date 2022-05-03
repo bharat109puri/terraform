@@ -22,7 +22,7 @@ data "aws_iam_policy_document" "oidc_assume_policy" {
 }
 
 resource "aws_iam_role" "this" {
-  name               = "${var.repo_name}-github-actions"
+  name               = "${var.repo_name}-${var.role_suffix}"
   assume_role_policy = data.aws_iam_policy_document.oidc_assume_policy.json
 
   inline_policy {

@@ -39,6 +39,7 @@ No modules.
 | <a name="input_inline_policy"></a> [inline\_policy](#input\_inline\_policy) | Inline policy for the role | `string` | n/a | yes |
 | <a name="input_oidc_provider_arn"></a> [oidc\_provider\_arn](#input\_oidc\_provider\_arn) | GitHub OIDC provider ARN (from bootstrap) | `string` | n/a | yes |
 | <a name="input_repo_name"></a> [repo\_name](#input\_repo\_name) | GitHub repo name (without `RecrdGroup/` organisation) | `string` | n/a | yes |
+| <a name="input_role_suffix"></a> [role\_suffix](#input\_role\_suffix) | Role name suffix | `string` | `"github-actions"` | no |
 
 ## Outputs
 
