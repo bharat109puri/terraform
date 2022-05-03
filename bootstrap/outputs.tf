@@ -23,6 +23,11 @@ output "eks_subnet_ids" {
   value       = module.vpc.intra_subnets
 }
 
+output "github_oidc_provider_arn" {
+  description = "The ARN of the GitHub OIDC Provider"
+  value       = aws_iam_openid_connect_provider.github_actions.arn
+}
+
 output "nat_public_ips" {
   description = "List of NAT Gateway IP addresses used (private subnet external IPs)"
   value       = module.vpc.nat_public_ips
