@@ -102,6 +102,7 @@ resource "kubernetes_manifest" "runner_deployment" {
       "replicas" = 1
       "template" = {
         "spec" = {
+          "labels"             = ["k8s-deployer"]
           "organization"       = "RecrdGroup"
           "serviceAccountName" = kubernetes_service_account_v1.github_actions_deployer.metadata[0].name
           "securityContext" = {
