@@ -25,6 +25,8 @@ Secrets can be specified at runtime, but it's not convenient. It's possible to e
 
 ### Future plans
 
+The general design direction can be found in [Miro][terraform_design].
+
 It's planned to switch to the paid `Team & Governance` tier of Terraform Cloud, which allows us to host our own Terraform agents on Kubernetes eliminating the need for using long-living AWS API keys.
 
 This is required for `remote` plans and triggers between workspaces to allow changes to ripple through the affected downstream workspaces.
@@ -32,6 +34,7 @@ This is required for `remote` plans and triggers between workspaces to allow cha
 Further reading on managing credentials in Terraform Cloud can be found [here][managing_credentials].
 
 [managing_credentials]: https://www.hashicorp.com/blog/managing-credentials-in-terraform-cloud-and-enterprise
+[terraform_design]: https://miro.com/app/board/uXjVO3CD4mI=/
 
 ## Plan
 
