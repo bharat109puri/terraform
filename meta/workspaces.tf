@@ -1,11 +1,11 @@
 locals {
-  # NOTE: Underscores are handled as subdirectories
+  # NOTE: Slashes are going to be replaced by double underscores in the workspace name
   workspaces = {
-    bootstrap         = "Bootstrap - base-level, rarely changing resources"
-    kubernetes        = "Kubernetes cluster - EKS resources",
-    kubernetes_config = "Kubernetes cluster - configuration and core services",
-    services          = "Common and shared resources for services",
-    users             = "AWS IAM users and roles",
+    bootstrap           = "Bootstrap - base-level, rarely changing resources"
+    kubernetes          = "Kubernetes cluster - EKS resources",
+    "kubernetes/config" = "Kubernetes cluster - configuration and core services",
+    services            = "Common and shared resources for services",
+    users               = "AWS IAM users and roles",
   }
 
   component_workspaces = {
@@ -50,7 +50,7 @@ resource "tfe_workspace" "meta" {
 resource "tfe_workspace" "terraform_repo" {
   for_each = local.workspaces
 
-  name         = each.key
+  name         = replace(each.key, "/", "__")
   organization = tfe_organization.recrd.name
 
   description = each.value
@@ -60,7 +60,7 @@ resource "tfe_workspace" "terraform_repo" {
   execution_mode        = "local" # TODO: AWS credentials
   file_triggers_enabled = true
   queue_all_runs        = true
-  working_directory     = replace(each.key, "_", "/")
+  working_directory     = each.key
 
   vcs_repo {
     identifier     = "RecrdGroup/terraform"
@@ -103,6 +103,6 @@ resource "tfe_run_trigger" "kubernetes" {
 }
 
 resource "tfe_run_trigger" "kubernetes_config" {
-  workspace_id  = tfe_workspace.terraform_repo["kubernetes_config"].id
+  workspace_id  = tfe_workspace.terraform_repo["kubernetes/config"].id
   sourceable_id = tfe_workspace.terraform_repo["kubernetes"].id
 }

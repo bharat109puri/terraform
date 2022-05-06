@@ -4,7 +4,7 @@ terraform {
     organization = "recrd"
 
     workspaces {
-      name = "kubernetes_config"
+      name = "kubernetes__config"
     }
   }
 }
