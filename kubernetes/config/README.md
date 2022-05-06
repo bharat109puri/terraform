@@ -1,5 +1,9 @@
 # Kubernetes config
 
+Running `terraform plan` in workspaces where the Kubernetes provider is configured requires [VPN connection][vpn] as the EKS cluster is private.
+
+[vpn]: ../../bootstrap/client_vpn.md
+
 ## Helm charts and IAM roles
 
 Helm charts are capable of generating their own `ServiceAccount`s, but this functionality is disabled in this directory.
