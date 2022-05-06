@@ -1,11 +1,17 @@
 locals {
   # NOTE: Slashes are going to be replaced by double underscores in the workspace name
   workspaces = {
-    bootstrap           = "Bootstrap - base-level, rarely changing resources"
-    kubernetes          = "Kubernetes cluster - EKS resources",
-    "kubernetes/config" = "Kubernetes cluster - configuration and core services",
-    services            = "Common and shared resources for services",
-    users               = "AWS IAM users and roles",
+    bootstrap                                            = "Bootstrap - base-level, rarely changing resources"
+    kubernetes                                           = "Kubernetes cluster - EKS resources",
+    "kubernetes/config"                                  = "Kubernetes cluster - configuration",
+    "kubernetes/config/actions_runner_controller"        = "GitHub Actions Runner controller",
+    "kubernetes/config/actions_runner_controller/config" = "GitHub Actions Runner controller - configuration",
+    "kubernetes/config/aws_load_balancer_controller"     = "AWS Load balancer controller",
+    "kubernetes/config/cert_manager"                     = "Cert manager controller",
+    "kubernetes/config/external_dns"                     = "ExternalDNS controller",
+    "kubernetes/config/sealed_secrets"                   = "SealedSecrets controller",
+    services                                             = "Common and shared resources for services",
+    users                                                = "AWS IAM users and roles",
   }
 
   component_workspaces = {
