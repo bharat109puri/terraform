@@ -12,6 +12,17 @@ resource "aws_s3_bucket" "this" {
       bucket_key_enabled = !var.enable_amazon_managed_encryption
     }
   }
+
+  dynamic "cors_rule" {
+    for_each = toset(length(var.cors_rule) > 0 ? [var.cors_rule] : [])
+
+    content {
+      allowed_headers = cors_rule.value.allowed_headers
+      allowed_methods = cors_rule.value.allowed_methods
+      allowed_origins = cors_rule.value.allowed_origins
+      expose_headers  = cors_rule.value.expose_headers
+    }
+  }
 }
 
 resource "aws_s3_bucket_public_access_block" "this" {

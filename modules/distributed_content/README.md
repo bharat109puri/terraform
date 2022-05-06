@@ -27,6 +27,7 @@ This module configures an S3 bucket and distributes it using CloudFront.
 |------|-------------|------|---------|:--------:|
 | <a name="input_aliases"></a> [aliases](#input\_aliases) | Aliases for the CloudFront distribution (must belong to `zone_id` if specified as FQDN) | `list(string)` | `[]` | no |
 | <a name="input_allowed_cidr_blocks"></a> [allowed\_cidr\_blocks](#input\_allowed\_cidr\_blocks) | List of CIDR blocks allowed to access the CloudFront distribution (WAF-based IP whitelisting) | `list(string)` | `[]` | no |
+| <a name="input_cors_rule"></a> [cors\_rule](#input\_cors\_rule) | CORS rule to apply on the origin bucket | `map(any)` | `{}` | no |
 | <a name="input_name"></a> [name](#input\_name) | Hostname of the CloudFront distribution and suffix of the origin bucket (`recrd-{var.name}`) | `string` | n/a | yes |
 | <a name="input_zone_id"></a> [zone\_id](#input\_zone\_id) | Zone ID to register the CloudFront endpoint | `string` | n/a | yes |
 

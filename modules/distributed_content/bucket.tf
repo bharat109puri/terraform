@@ -6,6 +6,8 @@ module "origin_bucket" {
   # NOTE: KMS encryption would require Lambda@Edge to decrypt objects
   #       https://aws.amazon.com/blogs/networking-and-content-delivery/serving-sse-kms-encrypted-content-from-s3-using-cloudfront/
   enable_amazon_managed_encryption = true
+
+  cors_rule = var.cors_rule
 }
 
 data "aws_iam_policy_document" "bucket_policy" {

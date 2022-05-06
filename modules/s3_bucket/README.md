@@ -39,6 +39,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_cors_rule"></a> [cors\_rule](#input\_cors\_rule) | CORS rule | `map(any)` | `{}` | no |
 | <a name="input_enable_amazon_managed_encryption"></a> [enable\_amazon\_managed\_encryption](#input\_enable\_amazon\_managed\_encryption) | SSE-S3 encryption instead of KMS | `bool` | `false` | no |
 | <a name="input_name"></a> [name](#input\_name) | Bucket name | `string` | n/a | yes |
 
