@@ -1,3 +1,8 @@
+data "tfe_outputs" "kubernetes" {
+  organization = "recrd"
+  workspace    = "kubernetes"
+}
+
 data "tfe_outputs" "users" {
   organization = "recrd"
   workspace    = "users"

@@ -1,20 +1,25 @@
+locals {
+  eks_addon_ecr = "602401143452.dkr.ecr.eu-west-1.amazonaws.com" # NOTE: https://docs.aws.amazon.com/eks/latest/userguide/add-ons-images.html
+  name          = "aws-load-balancer-controller"
+}
+
 data "tfe_outputs" "kubernetes" {
   organization = "recrd"
   workspace    = "kubernetes"
 }
 
 module "aws_load_balancer_controller_role" {
-  source = "../../modules/service_account_role"
+  source = "../../../modules/service_account_role"
 
-  name      = local.aws_load_balancer_controller_name
+  name      = local.name
   namespace = "kube-system"
 
-  inline_policy     = file("policies/aws_load_balancer_controller.json")
+  inline_policy     = file("policy.json")
   oidc_provider_arn = data.tfe_outputs.kubernetes.values.oidc_provider_arn
 }
 
 resource "helm_release" "aws_load_balancer_controller" {
-  name      = local.aws_load_balancer_controller_name
+  name      = local.name
   namespace = "kube-system"
 
   repository = "https://aws.github.io/eks-charts"
@@ -38,7 +43,7 @@ resource "helm_release" "aws_load_balancer_controller" {
 
   set {
     name  = "serviceAccount.name"
-    value = local.aws_load_balancer_controller_name
+    value = local.name
   }
 
   # TODO: Enable WAF
