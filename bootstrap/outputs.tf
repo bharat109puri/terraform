@@ -43,6 +43,11 @@ output "private_subnet_ids" {
   value       = module.vpc.private_subnets
 }
 
+output "recrd_com_public_zone_arn" {
+  description = "ARN of the recrd.com public hosted zone"
+  value       = aws_route53_zone.recrd_com.arn
+}
+
 output "recrd_com_public_zone_id" {
   description = "Zone ID of the recrd.com public hosted zone"
   value       = aws_route53_zone.recrd_com.zone_id

@@ -14,12 +14,6 @@ while the Helm release resource requires all annotations to be available at plan
 
 This pattern allows simple management of Helm charts with Terraform.
 
-## ExternalDNS
-
-https://github.com/kubernetes-sigs/external-dns/blob/v0.10.2/README.md
-
-- https://github.com/kubernetes-sigs/external-dns/blob/v0.10.2/docs/tutorials/aws.md#iam-policy
-
 ## Known issues
 
 Due to CRDs these resources must be migrated into separate workspaces.
