@@ -13,7 +13,3 @@ The `ServiceAccount` requires the `eks.amazonaws.com/role-arn` annotation to poi
 while the Helm release resource requires all annotations to be available at planning time.
 
 This pattern allows simple management of Helm charts with Terraform.
-
-## Known issues
-
-Due to CRDs these resources must be migrated into separate workspaces.

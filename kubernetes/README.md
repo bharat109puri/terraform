@@ -30,12 +30,12 @@ Managing sensitive and critical resources requires using the `recrd/admin` role.
 
 ### kustomize examples
 
-By convention various Recrd projects have `k8s/` and `k8s/secrets/` subdirectories.
+By convention various Recrd projects have `k8s/` subdirectories.
 
 These directories hold [kustomize][] configurations.
 As a version of `kustomize` is always included in `kubectl` there's no need to install `kustomize` separately.
 
-[kustomize]: https://kustomize.io/
+[kustomize]: https://github.com/RecrdGroup/kustomize
 
 #### Check changes
 
@@ -55,8 +55,11 @@ aws-vault exec recrd/developer -- kubectl apply -k k8s/
 
 Secrets must not be checked into version control.
 
-The current solution is making collaboration on secrets difficult.
-It's planned to be changed post launch.
+SealedSecrets are safe to check in as they are encrypted.
+
+For details on secret management see the [example][secret_management] in the kustomize repo.
+
+[secret_management]: https://github.com/RecrdGroup/kustomize/blob/master/example/hello-world/README.md
 
 ## Advanced pod networking
 
