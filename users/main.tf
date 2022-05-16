@@ -2,6 +2,7 @@ module "iam_users" {
   source = "../modules/iam_users"
 
   recrd_admins = [
+    "alexey@recrd.com",
     "mate@recrd.com",
     "murali@recrd.com",
   ]
