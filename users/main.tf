@@ -1,19 +1,9 @@
 module "iam_users" {
   source = "../modules/iam_users"
 
-  recrd_admins = [
-    "alexey@recrd.com",
-    "mate@recrd.com",
-    "murali@recrd.com",
-  ]
+  recrd_admins = var.recrd_admins
 
-  recrd_developers = [
-    "alex@recrd.com",
-    "alexey@recrd.com",
-    "anton@recrd.com",
-    "luis@recrd.com",
-    "mac@recrd.com",
-  ]
+  recrd_developers = var.recrd_developers
 
   third_parties = {
     riltech = {
