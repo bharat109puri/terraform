@@ -42,7 +42,7 @@ module "eks" {
       disk_size      = 20
 
       min_size     = 1
-      max_size     = 4
+      max_size     = 6
       desired_size = 3
 
       subnet_ids = data.tfe_outputs.bootstrap.values.private_subnet_ids
