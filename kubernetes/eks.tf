@@ -36,6 +36,15 @@ module "eks" {
       create_launch_template = false
       launch_template_name   = ""
 
+      ami_type = "AL2_x86_64"
+
+      instance_types = ["t3.medium"]
+      disk_size      = 20
+
+      min_size     = 1
+      max_size     = 4
+      desired_size = 3
+
       subnet_ids = data.tfe_outputs.bootstrap.values.private_subnet_ids
     }
   }
