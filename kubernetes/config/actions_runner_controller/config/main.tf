@@ -32,6 +32,24 @@ resource "kubernetes_cluster_role_binding_v1" "github_actions_deployer_view" {
   }
 }
 
+resource "kubernetes_cluster_role_binding_v1" "github_actions_deployer_patch" {
+  metadata {
+    name = "github-actions-deployer-patch"
+  }
+
+  role_ref {
+    api_group = "rbac.authorization.k8s.io"
+    kind      = "ClusterRole"
+    name      = "patch"
+  }
+
+  subject {
+    kind      = "ServiceAccount"
+    name      = kubernetes_service_account_v1.github_actions_deployer.metadata[0].name
+    namespace = kubernetes_service_account_v1.github_actions_deployer.metadata[0].namespace
+  }
+}
+
 resource "kubernetes_role_binding_v1" "github_actions_deployer_deploy" {
   metadata {
     name      = "github-actions-deployer-deploy"
