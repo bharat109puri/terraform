@@ -14,6 +14,38 @@ resource "kubernetes_service_account_v1" "github_actions_deployer" {
   }
 }
 
+resource "kubernetes_cluster_role_v1" "sealedsecrets-worker" {
+
+  metadata {
+    name = "sealedsecrets-worker"
+  }
+
+  rule {
+    api_groups = ["bitnami.com"]
+    resources  = ["sealedsecrets"]
+    verbs      = ["get", "list", "watch", "create", "update", "patch"]
+  }
+
+}
+
+resource "kubernetes_cluster_role_binding_v1" "github_actions_deployer_patch" {
+  metadata {
+    name = "github-actions-deployer-patch"
+  }
+
+  role_ref {
+    api_group = "bitnami.com"
+    kind      = "ClusterRole"
+    name      = "sealedsecrets-worker"
+  }
+
+  subject {
+    kind      = "ServiceAccount"
+    name      = kubernetes_service_account_v1.github_actions_deployer.metadata[0].name
+    namespace = kubernetes_service_account_v1.github_actions_deployer.metadata[0].namespace
+  }
+}
+
 resource "kubernetes_cluster_role_binding_v1" "github_actions_deployer_view" {
   metadata {
     name = "github-actions-deployer-view"
