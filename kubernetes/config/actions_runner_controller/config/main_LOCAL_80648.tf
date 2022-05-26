@@ -14,7 +14,6 @@ resource "kubernetes_service_account_v1" "github_actions_deployer" {
   }
 }
 
-<<<<<<< HEAD
 resource "kubernetes_cluster_role_v1" "sealedsecret-patcher" {
 
   metadata {
@@ -47,8 +46,6 @@ resource "kubernetes_cluster_role_binding_v1" "github_actions_deployer_patch" {
   }
 }
 
-=======
->>>>>>> master
 resource "kubernetes_cluster_role_binding_v1" "github_actions_deployer_view" {
   metadata {
     name = "github-actions-deployer-view"
