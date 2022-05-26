@@ -14,16 +14,16 @@ resource "kubernetes_service_account_v1" "github_actions_deployer" {
   }
 }
 
-resource "kubernetes_cluster_role_v1" "sealedsecrets-worker" {
+resource "kubernetes_cluster_role_v1" "sealedsecret-patcher" {
 
   metadata {
-    name = "sealedsecrets-worker"
+    name = "sealedsecret-patcher"
   }
 
   rule {
     api_groups = ["bitnami.com"]
     resources  = ["sealedsecrets"]
-    verbs      = ["get", "list", "watch", "create", "update", "patch"]
+    verbs      = ["get", "list", "watch", "update", "patch"]
   }
 
 }
@@ -35,8 +35,8 @@ resource "kubernetes_cluster_role_binding_v1" "github_actions_deployer_patch" {
 
   role_ref {
     api_group = "bitnami.com"
-    kind      = "ClusterRole"
-    name      = "sealedsecrets-worker"
+    kind      = "SealedSecret"
+    name      = "sealedsecret-patcher"
   }
 
   subject {
