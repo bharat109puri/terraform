@@ -76,7 +76,7 @@ resource "kubernetes_role_v1" "deploy" {
   rule {
     api_groups = ["bitnami.com"]
     resources  = ["sealedsecrets"]
-    verbs      = ["get", "list", "watch"]
+    verbs      = ["get", "list", "watch", "patch"]
   }
 }
 
