@@ -78,6 +78,11 @@ resource "kubernetes_role_v1" "deploy" {
     resources  = ["sealedsecrets"]
     verbs      = ["get", "list", "watch", "patch"]
   }
+  rule {
+    api_groups = ["networking.k8s.io"]
+    resources  = ["ingresses"]
+    verbs      = ["get", "list", "watch", "patch"]
+  }
 }
 
 resource "kubernetes_role_binding_v1" "default_deploy" {
