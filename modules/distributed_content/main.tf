@@ -72,6 +72,9 @@ resource "aws_cloudfront_distribution" "this" {
     minimum_protocol_version = "TLSv1.2_2018" # FIXME
   }
 
+  response_headers_policy_id = var.response_headers_policy_id
+  smooth_streaming           = var.smooth_streaming
+
   # TODO: Require FULL_CONTROL ACL for `awslogsdelivery`
   #       https://github.com/terraform-providers/terraform-provider-aws/issues/12512
   #       https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html

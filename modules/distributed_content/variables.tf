@@ -25,3 +25,13 @@ variable "zone_id" {
   description = "Zone ID to register the CloudFront endpoint"
   type        = string
 }
+
+variable "response_headers_policy_id" {
+  description = "The unique identifier of the origin request policy that is attached to the behavior"
+  type        = string
+}
+
+variable "smooth_streaming" {
+  description = "Indicates whether you want to distribute media files in Microsoft Smooth Streaming format using the origin that is associated with this cache behavior"
+  type        = bool
+}
