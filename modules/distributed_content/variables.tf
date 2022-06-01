@@ -29,9 +29,11 @@ variable "zone_id" {
 variable "response_headers_policy_id" {
   description = "The unique identifier of the origin request policy that is attached to the behavior"
   type        = string
+  default     = "67f7725c-6f97-4210-82d7-5512b31e9d03"
 }
 
 variable "smooth_streaming" {
   description = "Indicates whether you want to distribute media files in Microsoft Smooth Streaming format using the origin that is associated with this cache behavior"
   type        = bool
+  default     = false
 }

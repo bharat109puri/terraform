@@ -47,8 +47,10 @@ resource "aws_cloudfront_distribution" "this" {
 
     viewer_protocol_policy = "redirect-to-https"
 
+    smooth_streaming = var.smooth_streaming
+
     # NOTE: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-response-headers-policies.html
-    response_headers_policy_id = "67f7725c-6f97-4210-82d7-5512b31e9d03" # NOTE: SecurityHeadersPolicy
+    response_headers_policy_id = var.response_headers_policy_id # NOTE: SecurityHeadersPolicy
 
     # FIXME
     min_ttl     = 0
@@ -72,8 +74,7 @@ resource "aws_cloudfront_distribution" "this" {
     minimum_protocol_version = "TLSv1.2_2018" # FIXME
   }
 
-  response_headers_policy_id = var.response_headers_policy_id
-  smooth_streaming           = var.smooth_streaming
+
 
   # TODO: Require FULL_CONTROL ACL for `awslogsdelivery`
   #       https://github.com/terraform-providers/terraform-provider-aws/issues/12512
