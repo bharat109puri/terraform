@@ -1,6 +1,6 @@
 variable "cors_rule" {
   description = "CORS rule"
-  type        = map(any)
+  type        = any
   default     = {}
 }
 
