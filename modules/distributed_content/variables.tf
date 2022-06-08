@@ -12,8 +12,14 @@ variable "allowed_cidr_blocks" {
 
 variable "cors_rule" {
   description = "CORS rule to apply on the origin bucket"
-  type        = any
-  default     = {}
+  type = list(object({
+    allowed_headers = list(string)
+    allowed_methods = list(string)
+    allowed_origins = list(string)
+    expose_headers  = list(string)
+    max_age_seconds = number
+  }))
+  default = null
 }
 
 variable "name" {

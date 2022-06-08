@@ -1,7 +1,13 @@
 variable "cors_rule" {
   description = "CORS rule"
-  type        = any
-  default     = {}
+  type = list(object({
+    allowed_headers = list(string)
+    allowed_methods = list(string)
+    allowed_origins = list(string)
+    expose_headers  = list(string)
+    max_age_seconds = number
+  }))
+  default = null
 }
 
 variable "enable_amazon_managed_encryption" {
