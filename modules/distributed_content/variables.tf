@@ -12,8 +12,14 @@ variable "allowed_cidr_blocks" {
 
 variable "cors_rule" {
   description = "CORS rule to apply on the origin bucket"
-  type        = map(any)
-  default     = {}
+  type = list(object({
+    allowed_headers = list(string)
+    allowed_methods = list(string)
+    allowed_origins = list(string)
+    expose_headers  = list(string)
+    max_age_seconds = number
+  }))
+  default = null
 }
 
 variable "name" {
@@ -36,4 +42,10 @@ variable "smooth_streaming" {
   description = "Indicates whether you want to distribute media files in Microsoft Smooth Streaming format using the origin that is associated with this cache behavior"
   type        = bool
   default     = false
+}
+
+variable "price_class" {
+  description = "The price class for this distribution. One of PriceClass_All, PriceClass_200, PriceClass_100"
+  type        = string
+  default     = "PriceClass_100"
 }

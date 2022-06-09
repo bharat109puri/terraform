@@ -9,7 +9,7 @@ resource "aws_cloudfront_origin_access_identity" "this" {
 resource "aws_cloudfront_distribution" "this" {
   aliases = concat([local.fqdn], var.aliases)
 
-  price_class = "PriceClass_100" # FIXME
+  price_class = var.price_class
 
   default_root_object = "index.html"
   enabled             = true
