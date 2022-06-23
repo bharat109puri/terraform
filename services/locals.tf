@@ -22,5 +22,6 @@ locals {
     "indus",
     "nile",
     "recrd-cli",
+    "musi",
   ])
 }
