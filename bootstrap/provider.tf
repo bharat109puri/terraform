@@ -8,10 +8,18 @@ terraform {
       source  = "hashicorp/tfe"
       version = "0.28.1"
     }
+    awsutils = {
+      source  = "cloudposse/awsutils"
+      version = "0.8.0"
+    }
   }
 }
 
 provider "aws" {
+  region = var.region
+}
+
+provider "awsutils" {
   region = var.region
 }
 
