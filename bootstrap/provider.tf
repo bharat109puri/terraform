@@ -8,6 +8,10 @@ terraform {
       source  = "hashicorp/tfe"
       version = ">= 0.28.1"
     }
+    awsutils = {
+      source = "cloudposse/awsutils"
+      version = ">= 0.11.0"
+    }
   }
 }
 
