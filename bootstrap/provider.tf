@@ -10,7 +10,7 @@ terraform {
     }
     awsutils = {
       source  = "cloudposse/awsutils"
-      version = "0.8.0"
+      version = ">= 0.8.0"
     }
   }
 }
