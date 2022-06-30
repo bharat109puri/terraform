@@ -8,10 +8,11 @@ variable "recrd_admins" {
   description = "List of `admin` email addresses. Specify only `@recrd.com` emails"
   type        = list(string)
   default = [
+    "abu@recrd.com",
     "alexey@recrd.com",
-    "mate@recrd.com",
-    "murali@recrd.com",
+    "bharat@recrd.com",
     "dmitry@recrd.com",
+    "sree@recrd.com"
   ]
 }
 
@@ -23,6 +24,6 @@ variable "recrd_developers" {
     "alexey@recrd.com",
     "anton@recrd.com",
     "chijioke@recrd.com",
-    "andrey@recrd.com",
+    "roberto@recrd.com"
   ]
 }
