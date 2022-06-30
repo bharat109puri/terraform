@@ -2,7 +2,7 @@
 # Manual edits may be lost in future updates.
 
 provider "registry.terraform.io/cloudposse/awsutils" {
-  version     = ">= 0.11.0"
+  version     = "0.11.0"
   constraints = ">= 0.8.0"
   hashes = [
     "h1:1NXX8LEdIf7puHP2PbPCPByUHWZTj/H95c+3qxKJVEo=",
