@@ -23,5 +23,6 @@ locals {
     "nile",
     "recrd-cli",
     "musi",
+    "lena"
   ])
 }
