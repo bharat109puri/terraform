@@ -27,41 +27,54 @@ resource "ec_deployment" "this" {
 
     # NOTE: https://github.com/elastic/terraform-provider-ec/issues/336
     # NOTE: topology blocks must be kept in an alphabetical order based on `id`
-    topology {
-      id         = "cold"
-      zone_count = 2
+  
 
-      autoscaling {
-        max_size = "15g"
+    dynamic "topology" {
+      for_each = var.settings
+      content {
+       id = settings.value["id"]
+       zone_count = settings.value["zone_count"]
+        autoscaling {
+          max_size = settings.value["max_size"]
+        }
       }
     }
 
-    topology {
-      id         = "frozen"
-      zone_count = 2
+    # topology {
+    #   id         = "cold"
+    #   zone_count = 2
 
-      autoscaling {
-        max_size = "15g"
-      }
-    }
+    #   autoscaling {
+    #     max_size = "15g"
+    #   }
+    # }
 
-    topology {
-      id         = "hot_content"
-      zone_count = 3
+    # topology {
+    #   id         = "frozen"
+    #   zone_count = 2
 
-      autoscaling {
-        max_size = "8g"
-      }
-    }
+    #   autoscaling {
+    #     max_size = "15g"
+    #   }
+    # }
 
-    topology {
-      id         = "warm"
-      zone_count = 3
+    # topology {
+    #   id         = "hot_content"
+    #   zone_count = 3
 
-      autoscaling {
-        max_size = "15g"
-      }
-    }
+    #   autoscaling {
+    #     max_size = "8g"
+    #   }
+    # }
+
+    # topology {
+    #   id         = "warm"
+    #   zone_count = 3
+
+    #   autoscaling {
+    #     max_size = "15g"
+    #   }
+    # }
   }
 
   kibana {}
