@@ -32,10 +32,10 @@ resource "ec_deployment" "this" {
     dynamic "topology" {
       for_each = var.topology
       content {
-       id = settings.value["id"]
-       zone_count = settings.value["zone_count"]
+       id = topology.value["id"]
+       zone_count = topology.value["zone_count"]
         autoscaling {
-          max_size = settings.value["max_size"]
+          max_size = topology.value["autoscaling_max_size"]
         }
       }
     }
