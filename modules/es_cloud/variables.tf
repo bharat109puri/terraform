@@ -17,7 +17,7 @@ variable "topology" {
   type = list(object({
     id = string
     zone_count = number
-    max_size = string
+    autoscaling_max_size = string
   }))
   nullable = true
 }
