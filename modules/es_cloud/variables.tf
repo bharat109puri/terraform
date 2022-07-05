@@ -12,3 +12,14 @@ variable "vpc_endpoint_id" {
   description = "Elastic VPC endpoint ID (output from `vpc_endpoint` submodule)"
   type        = string
 }
+
+variable "topology" {
+  type = list(object({
+    id = string
+    zone_count = number
+    max_size = string
+  }))
+  default = [
+    {}
+  ]
+}

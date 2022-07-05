@@ -30,7 +30,7 @@ resource "ec_deployment" "this" {
   
 
     dynamic "topology" {
-      for_each = var.settings
+      for_each = var.topology
       content {
        id = settings.value["id"]
        zone_count = settings.value["zone_count"]
