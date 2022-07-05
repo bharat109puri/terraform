@@ -19,7 +19,5 @@ variable "topology" {
     zone_count = number
     max_size = string
   }))
-  default = [
-    {}
-  ]
+  nullable = true
 }
