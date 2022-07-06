@@ -8,6 +8,10 @@ terraform {
       source  = "hashicorp/tfe"
       version = "0.28.1"
     }
+    helm = {
+      source  = "hashicorp/helm"
+      version = "2.6.0"
+    }
   }
 }
 
@@ -17,4 +21,10 @@ provider "aws" {
 
 provider "tfe" {
   token = var.tfe_token
+}
+
+provider "helm" {
+  kubernetes {
+    config_path = "./kubeconfig.yaml"
+  }
 }
