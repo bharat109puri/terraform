@@ -19,7 +19,7 @@ module "vpc" {
   single_nat_gateway = true
 
   tags = {
-    Owner       = "devops"
+    Owner       = "recrd"
     Environment = "management"
     CreatedBy   = "terraform"
   }
