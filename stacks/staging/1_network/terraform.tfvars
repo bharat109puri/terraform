@@ -1,4 +1,4 @@
 # vim: set filetype=hcl
-name     = "management"
+name     = "staging"
 region   = "eu-west-1"
-vpc_cidr = "192.168.0.0/20"
+vpc_cidr = "192.168.16.0/20"
