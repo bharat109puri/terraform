@@ -4,7 +4,7 @@ resource "helm_release" "sealed_secrets_controller" {
 
   repository = "https://bitnami-labs.github.io/sealed-secrets"
   chart      = "sealed-secrets"
-  version    = "2.1.4"
+  version    = "2.3.0"
 
   set {
     name  = "fullnameOverride"
