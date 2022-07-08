@@ -24,7 +24,7 @@ resource "helm_release" "aws_load_balancer_controller" {
 
   repository = "https://aws.github.io/eks-charts"
   chart      = "aws-load-balancer-controller"
-  version    = "1.3.3"
+  version    = "1.4.2"
 
   set {
     name  = "image.repository"
