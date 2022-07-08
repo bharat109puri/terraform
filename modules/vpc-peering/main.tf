@@ -18,7 +18,7 @@ resource "aws_vpc_peering_connection_accepter" "accepter" {
   auto_accept               = true
 
   tags = {
-    Name        = "${var.accepter_env}_peer_to_${var.owner_env}"
+    Name        = "${var.owner_env}_peer_to_${var.accepter_env}"
     CreatedBy   = "terraform"
     Owner       = "recrd"
   }
