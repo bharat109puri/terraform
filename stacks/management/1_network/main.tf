@@ -24,3 +24,21 @@ module "vpc" {
     CreatedBy   = "terraform"
   }
 }
+
+################################################################################
+# VPC Peering - Management-Staging
+################################################################################
+
+
+ module "management-staging" {
+  # push the code to master and change the reference"
+   source = "../../modules/vpc-peering"
+
+   owner_vpc_id       = module.vpc.vpc_id
+   owner_profile      = "default"
+   owner_region       = var.region
+   accepter_vpc_id    = var.staging_vpc_id
+   accepter_region    = var.region
+   accepter_profile   = "default"
+   
+ }
