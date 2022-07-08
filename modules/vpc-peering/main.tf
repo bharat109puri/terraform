@@ -6,7 +6,7 @@ resource "aws_vpc_peering_connection" "owner" {
   peer_region   = var.accepter_region
 
   tags = {
-    Name = "peer_to_${var.accepter_env}"
+    Name = "${var.owner_env}_peer_to_${var.accepter_env}"
   }
 }
 
@@ -16,7 +16,7 @@ resource "aws_vpc_peering_connection_accepter" "accepter" {
   auto_accept               = true
 
   tags = {
-    Name = "peer_to_${var.owner_env}"
+    Name = "${var.accepter_env}_peer_to_${var.owner_env}"
   }
 }
 
