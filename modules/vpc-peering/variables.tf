@@ -1,7 +1,7 @@
-variable "owner_profile" {}
+variable "owner_env" {}
 variable "owner_region" {}
 variable "accepter_region" {}
-variable "accepter_profile" {}
+variable "accepter_env" {}
 
 variable "owner_vpc_id" {
   description = "Owner VPC Id"
