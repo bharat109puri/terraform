@@ -37,8 +37,8 @@ module "vpc" {
    owner_vpc_id       = module.vpc.vpc_id
    owner_profile      = "default"
    owner_region       = var.region
-   accepter_vpc_id    = var.staging_vpc_id
+   accepter_vpc_id    = data.tfe_outputs.staging_network.vpc_id
    accepter_region    = var.region
    accepter_profile   = "default"
-   
+
  }
