@@ -31,14 +31,12 @@ module "vpc" {
 
 
  module "management-staging" {
-  # push the code to master and change the reference"
-   source = "../../modules/vpc-peering"
+  source = "git@github.com:RecrdGroup/terraform.git//modules/vpc_peering?ref=UT-82-peering"
 
-   owner_vpc_id       = module.vpc.vpc_id
-   owner_profile      = "default"
-   owner_region       = var.region
-   accepter_vpc_id    = data.tfe_outputs.staging_network.vpc_id
-   accepter_region    = var.region
-   accepter_profile   = "default"
-
+  owner_vpc_id       = module.vpc.vpc_id
+  owner_profile      = "default"
+  owner_region       = var.region
+  accepter_vpc_id    = data.tfe_outputs.staging_network.vpc_id
+  accepter_region    = var.region
+  accepter_profile   = "default"
  }
