@@ -1,6 +1,6 @@
 data "aws_vpc" "accepter" {
-    provider = "aws.accepter"
-    id = var.accepter_vpc_id
+  provider = aws.accepter
+  id = var.accepter_vpc_id
 }
 data "aws_vpc" "owner" {
     id = var.owner_vpc_id
@@ -8,7 +8,7 @@ data "aws_vpc" "owner" {
 
 
 data "aws_route_tables" "accepter" {
-  provider = "aws.accepter"
+  provider = aws.accepter
   vpc_id = data.aws_vpc.accepter.id
 }
 
