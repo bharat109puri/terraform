@@ -39,7 +39,7 @@ module "vpc" {
   accepter_vpc_id    = data.tfe_outputs.staging_network.values.vpc_id
   accepter_region    = var.region
   accepter_env       = "staging"
- }
+}
 
 
 ################################################################################
@@ -53,7 +53,7 @@ module "vpc" {
   owner_vpc_id       = module.vpc.vpc_id
   owner_env          = "management"
   owner_region       = var.region
-  accepter_vpc_id    = data.tfe_outputs.staging_network.values.vpc_id
+  accepter_vpc_id    = data.tfe_outputs.prod_network.values.vpc_id
   accepter_region    = var.region
   accepter_env       = "prod"
- }
+}

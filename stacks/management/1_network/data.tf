@@ -10,3 +10,8 @@ data "tfe_outputs" "staging_network" {
   organization = "recrd"
   workspace    = "staging_network"
 }
+
+data "tfe_outputs" "prod_network" {
+  organization = "recrd"
+  workspace    = "bootstrap"
+}
