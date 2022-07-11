@@ -55,5 +55,5 @@ module "vpc" {
   owner_region       = var.region
   accepter_vpc_id    = data.tfe_outputs.staging_network.values.vpc_id
   accepter_region    = var.region
-  accepter_env       = "staging"
+  accepter_env       = "prod"
  }
