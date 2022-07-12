@@ -31,7 +31,8 @@ module "vpc" {
 
 
 module "management-staging" {
-  source = "git@github.com:RecrdGroup/terraform.git//modules/vpc-peering?ref=master"
+  # source = "git@github.com:RecrdGroup/terraform.git//modules/vpc-peering?ref=master"
+  source = "../../../modules/vpc-peering/"
 
   owner_vpc_id    = module.vpc.vpc_id
   owner_env       = "management"
