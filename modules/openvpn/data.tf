@@ -2,7 +2,7 @@ data "aws_caller_identity" "current" {}
 
 data "template_file" "openvpn_userdata" {
   template = file("${path.module}/scripts/openvpn_userdata.sh")
-  vars {
+  vars = {
     OpenvpnBackupBucket     = var.openvpnBackupBucket
     Aws_Region              = var.aws_region
     OpenVpnAdminUser        = var.OpenVpnAdminUser
