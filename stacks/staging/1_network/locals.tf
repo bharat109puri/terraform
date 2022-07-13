@@ -1,4 +1,7 @@
 locals {
+  # NOTE: Subnets must be tagged with EKS cluster name to able to provision load balancers
+  eks_cluster_name = "${var.name}-kubernetes"
+
   _all_cirds = cidrsubnets(var.vpc_cidr, 2, 2, 2, 4, 4, 4, 12, 12, 12, 6) # NOTE: /16 -> /18, /18, /18, /20, /20, /20, /28, /28, /28, /22
 
   private_cidrs = slice(local._all_cirds, 0, 3)
