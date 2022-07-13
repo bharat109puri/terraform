@@ -14,7 +14,7 @@ resource "aws_autoscaling_group" "openvpn_asg" {
   min_size                  = var.openvpn_max_size
   desired_capacity          = var.openvpn_desired_capacity
   wait_for_capacity_timeout = 0
-  tags                      =  ["${merge({"Name", format("%s-openvpn", var.name_prefix}, var.openvpn_asg_tags)}"]
+  tags                      = ["${merge({ "Name" = "${var.name_prefix}-openvpn" }, var.openvpn_asg_tags)}"]
   lifecycle {
     create_before_destroy = true
   }
