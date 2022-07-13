@@ -31,7 +31,7 @@ module "vpc" {
 
 
 module "management-staging" {
-  # source = "git@github.com:RecrdGroup/terraform.git//modules/vpc-peering?ref=master"
+  # source = "git@github.com:RecrdGroup/terraform.git//modules/vpc-peering?ref=UT-82-peering"
   source = "../../../modules/vpc-peering/"
 
   owner_vpc_id    = module.vpc.vpc_id
@@ -40,4 +40,22 @@ module "management-staging" {
   accepter_vpc_id = data.tfe_outputs.staging_network.values.vpc_id
   accepter_region = var.region
   accepter_env    = "staging"
+}
+
+
+################################################################################
+# VPC Peering - Management-Production
+################################################################################
+
+
+module "management-prod" {
+  # source = "git@github.com:RecrdGroup/terraform.git//modules/vpc-peering?ref=UT-82-peering"
+  source = "../../../modules/vpc-peering/"
+
+  owner_vpc_id    = module.vpc.vpc_id
+  owner_env       = "management"
+  owner_region    = var.region
+  accepter_vpc_id = data.tfe_outputs.prod_network.values.vpc_id
+  accepter_region = var.region
+  accepter_env    = "prod"
 }
