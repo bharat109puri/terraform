@@ -25,3 +25,58 @@ data "template_cloudinit_config" "config" {
   }
 
 }
+
+
+## IAM policies
+data "aws_iam_policy_document" "openvpn_assume_role_policy" {
+  statement {
+    actions = ["sts:AssumeRole"]
+
+    principals {
+      type        = "Service"
+      identifiers = ["ec2.amazonaws.com"]
+    }
+  }
+}
+
+data "aws_iam_policy_document" "openvpn_role_policy" {
+  statement {
+    actions   = ["*"]
+    resources = ["*"]
+  }
+
+  statement {
+    actions   = ["aws-portal:*Billing"]
+    resources = ["*"]
+    effect    = "Deny"
+  }
+
+  statement {
+    actions = [
+      "cloudtrail:DeleteTrail",
+      "cloudtrail:StopLogging",
+      "cloudtrail:UpdateTrail",
+    ]
+
+    resources = ["*"]
+    effect    = "Deny"
+  }
+
+  statement {
+    actions   = ["s3:ListBucket"]
+    resources = ["arn:aws:s3:::${var.openvpnBackupBucket}"]
+  }
+
+  statement {
+    actions = [
+      "s3:Put*",
+      "s3:Get*",
+      "s3:List*",
+    ]
+
+    resources = [
+      "arn:aws:s3:::${var.openvpnBackupBucket}/backups/openvpn",
+      "arn:aws:s3:::${var.openvpnBackupBucket}/backups/openvpn/*"
+    ]
+  }
+}
