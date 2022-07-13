@@ -5,7 +5,7 @@ resource "aws_eip" "openvpn_eip" {
   }
 }
 resource "aws_autoscaling_group" "openvpn_asg" {
-  depends_on                = ["aws_eip.openvpn_eip"]
+  depends_on                = [aws_eip.openvpn_eip]
   name                      = aws_launch_configuration.openvpn_lc.name
   vpc_zone_identifier       = ["${var.openvpn_instance_subnets_ids}"]
   launch_configuration      = aws_launch_configuration.openvpn_lc.name
