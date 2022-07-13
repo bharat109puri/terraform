@@ -76,12 +76,6 @@ resource "aws_security_group" "openvpn_asg_sg" {
 
   ingress = [
     {
-      from_port   = 22
-      to_port     = 22
-      protocol    = "tcp"
-      cidr_blocks = [var.vpc_cidr]
-    },
-    {
       from_port   = 443
       to_port     = 443
       protocol    = "tcp"
