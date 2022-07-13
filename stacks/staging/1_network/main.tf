@@ -30,7 +30,7 @@ module "vpc" {
 
   tags = {
     Owner       = "recrd"
-    Environment = "staging"
+    Environment = "${var.name}"
     CreatedBy   = "terraform"
   }
 }

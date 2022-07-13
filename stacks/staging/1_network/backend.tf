@@ -4,7 +4,7 @@ terraform {
     organization = "recrd"
 
     workspaces {
-      name = "staging_network"
+      name = "staging_bootstrap"
     }
   }
 }

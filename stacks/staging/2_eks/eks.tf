@@ -1,13 +1,13 @@
 data "tfe_outputs" "bootstrap" {
   organization = "recrd"
-  workspace    = "staging_network"
+  workspace    = "staging_bootstrap"
 }
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "18.0.6"
 
-  cluster_name    = # NOTE: data.tfe_outputs.bootstrap.values.eks_cluster_name #!!!!local.eks_cluster_name
+  cluster_name    = data.tfe_outputs.bootstrap.values.eks_cluster_name #NOTE:local.eks_cluster_name
   cluster_version = var.eks_version
 
   cluster_endpoint_private_access = true
@@ -20,12 +20,12 @@ module "eks" {
       from_port                = 443
       to_port                  = 443
       type                     = "ingress"
-      source_security_group_id = data.tfe_outputs.bootstrap.values.vpn_clients_security_group_id #NOTE: #!!aws_security_group.vpn_clients.id
+      source_security_group_id = data.tfe_outputs.bootstrap.values.eks_security_group_id #NOTE:aws_security_group.vpn_clients.id
     }
   }
 
   vpc_id     = data.tfe_outputs.bootstrap.values.vpc_id
-  subnet_ids =  #NOTE: data.tfe_outputs.bootstrap.values.eks_subnet_ids #!!!module.vpc.intra_subnets
+  subnet_ids = data.tfe_outputs.bootstrap.values.eks_subnet_ids #NOTE:module.vpc.intra_subnets
 
   eks_managed_node_groups = {
     # TODO: One node group per AZ?
@@ -44,7 +44,7 @@ module "eks" {
       max_size     = 8
       desired_size = 3
 
-      subnet_ids =  #NOTE:data.tfe_outputs.bootstrap.values.private_subnet_ids #!!module.vpc.private_subnets
+      subnet_ids = data.tfe_outputs.bootstrap.values.private_subnet_ids #!!module.vpc.private_subnets
     }
   }
 
