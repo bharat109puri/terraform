@@ -24,5 +24,6 @@ locals {
     "recrd-cli",
     "musi",
     "lena-micro-services"
+    "echo"
   ])
 }
