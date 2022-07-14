@@ -23,6 +23,7 @@ locals {
     "nile",
     "recrd-cli",
     "musi",
-    "lena-micro-services"
+    "lena-micro-services",
+    "echo"
   ])
 }
