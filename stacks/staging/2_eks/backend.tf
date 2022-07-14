@@ -4,7 +4,7 @@ terraform {
     organization = "recrd"
 
     workspaces {
-      name = "stage_kubernetes"
+      name = "staging_kubernetes"
     }
   }
 }

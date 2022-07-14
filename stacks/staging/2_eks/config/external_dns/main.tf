@@ -10,7 +10,7 @@ data "tfe_outputs" "bootstrap" {
 
 data "tfe_outputs" "kubernetes" {
   organization = "recrd"
-  workspace    = "stage_kubernetes"
+  workspace    = "staging_kubernetes"
 }
 
 module "external_dns_controller_role" {

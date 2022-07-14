@@ -1,6 +1,6 @@
 data "tfe_outputs" "kubernetes_config" {
   organization = "recrd"
-  workspace    = "stage_kubernetes__config"
+  workspace    = "staging_kubernetes__config"
 }
 
 resource "kubernetes_service_account_v1" "github_actions_deployer" {

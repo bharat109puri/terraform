@@ -41,8 +41,8 @@ module "eks" {
       disk_size      = 20
 
       min_size     = 1
-      max_size     = 8
-      desired_size = 3
+      max_size     = 6
+      desired_size = 2
 
       subnet_ids = data.tfe_outputs.bootstrap.values.private_subnet_ids #!!module.vpc.private_subnets
     }
@@ -54,15 +54,4 @@ module "eks" {
     provider_key_arn = nonsensitive(data.tfe_outputs.bootstrap.values.eks_secret_encryption_key_arn) #NOTE: #!!aws_kms_key.eks.arn
     resources        = ["secrets"]
   }])
-}
-
-module "cluster_autoscaler" {
-  source = "git::https://github.com/DNXLabs/terraform-aws-eks-cluster-autoscaler.git"
-
-  enabled = true
-
-  cluster_name                     = module.eks.cluster_id
-  cluster_identity_oidc_issuer     = module.eks.cluster_oidc_issuer_url
-  cluster_identity_oidc_issuer_arn = module.eks.oidc_provider_arn
-  aws_region                       = var.region
 }

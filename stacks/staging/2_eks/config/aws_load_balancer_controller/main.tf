@@ -5,11 +5,11 @@ locals {
 
 data "tfe_outputs" "kubernetes" {
   organization = "recrd"
-  workspace    = "stage_kubernetes"
+  workspace    = "staging_kubernetes"
 }
 
 module "aws_load_balancer_controller_role" {
-  source = "../../../modules/service_account_role"
+  source = "../../../../../modules/service_account_role"
 
   name      = local.name
   namespace = "kube-system"

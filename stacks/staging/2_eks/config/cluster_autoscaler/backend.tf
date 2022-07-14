@@ -4,7 +4,7 @@ terraform {
     organization = "recrd"
 
     workspaces {
-      name = "staging_kubernetes__config__cert_manager"
+      name = "staging_kubernetes__config__cluster_autoscaler"
     }
   }
 }

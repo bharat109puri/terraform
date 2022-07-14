@@ -4,7 +4,7 @@ terraform {
     organization = "recrd"
 
     workspaces {
-      name = "stage_kubernetes__config__external_dns"
+      name = "staging_kubernetes__config__external_dns"
     }
   }
 }
