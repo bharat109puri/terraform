@@ -1,6 +1,6 @@
 # Openvpn
 module "openvpn" {
-  source                       = "../../../modules/openvpn"
+  source                       = "../../../modules/openvpn/"
   openvpn_tags                 = var.tags
   openvpn_asg_tags             = var.openvpn_asg_tags
   openvpn_ami_id               = var.openvpn_ami_id

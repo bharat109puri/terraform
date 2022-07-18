@@ -15,6 +15,11 @@ variable "aws_region" {
   description = "aws region name"
 }
 
+variable "tfe_token" {
+  description = "Terraform Cloud Team token"
+  type        = string
+  sensitive   = true
+}
 #===============================================================================
 # openvpn
 #===============================================================================
@@ -43,3 +48,6 @@ variable "OpenVpnAdminPassword" {
 }
 
 variable "openvpnBackupBucket" {}
+
+
+

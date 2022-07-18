@@ -2,7 +2,7 @@
 # General
 #===============================================================================
 name = "recrd"
-tags {
+tags = {
   Environment = "management"
   Version     = "v1.0"
   Terraform   = "true"
