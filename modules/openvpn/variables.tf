@@ -14,7 +14,7 @@ variable "openvpn_tags" {
 
 variable "openvpn_asg_tags" {
   description = "A List of tags to add to ASG EC2 instances."
-  type        = list(string)
+  type        = map(string)
 }
 
 variable "openvpn_instance_subnets_ids" {

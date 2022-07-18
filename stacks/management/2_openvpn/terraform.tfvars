@@ -1,13 +1,13 @@
 #===============================================================================
 # General
 #===============================================================================
-name = "recrd"
+name = "management-recrd"
 tags = {
   Environment = "management"
   Version     = "v1.0"
   Terraform   = "true"
 }
-aws_region = "eu-west-1"
+region = "eu-west-1"
 
 #===============================================================================
 # openvpn
@@ -23,10 +23,9 @@ openvpn_desired_capacity = 1
 OpenVpnAdminUser         = "openvpn"
 OpenVpnAdminPassword     = "TY>c}pinTw27J*Jy"
 openvpnBackupBucket      = "recrd-management-eu-west-1"
-openvpn_asg_tags = [
-  {
-    key                 = "Service"
-    value               = "openvpn"
-    propagate_at_launch = true
-  }
-]
+openvpn_asg_tags = {
+  key                 = "Service"
+  value               = "openvpn"
+  propagate_at_launch = true
+  Terraform           = "true"
+}

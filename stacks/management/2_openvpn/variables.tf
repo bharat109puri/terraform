@@ -11,7 +11,7 @@ variable "tags" {
   type        = map(string)
 }
 
-variable "aws_region" {
+variable "region" {
   description = "aws region name"
 }
 
@@ -24,7 +24,7 @@ variable "tfe_token" {
 # openvpn
 #===============================================================================
 variable "openvpn_asg_tags" {
-  type = list(string)
+  type = map(string)
 }
 
 variable "openvpn_ami_id" {}

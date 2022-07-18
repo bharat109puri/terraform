@@ -12,11 +12,11 @@ module "openvpn" {
   openvpn_max_size             = var.openvpn_max_size
   openvpn_min_size             = var.openvpn_min_size
   openvpn_desired_capacity     = var.openvpn_desired_capacity
-  openvpn_instance_subnets_ids = data.tfe_outputs.public_subnets
-  aws_region                   = var.aws_region
-  vpc_id                       = data.tfe_outputs.vpc_id
-  vpc_cidr                     = data.tfe_outputs.vpc_cidr_block
+  openvpn_instance_subnets_ids = data.tfe_outputs.network.values.public_subnets
+  aws_region                   = var.region
+  vpc_id                       = data.tfe_outputs.network.values.vpc_id
+  vpc_cidr                     = data.tfe_outputs.network.values.vpc_cidr_block
   OpenVpnAdminUser             = var.OpenVpnAdminUser
   OpenVpnAdminPassword         = var.OpenVpnAdminPassword
   openvpnBackupBucket          = var.openvpnBackupBucket
-}
+}   
