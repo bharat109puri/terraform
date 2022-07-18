@@ -27,7 +27,6 @@ variable "openvpn_asg_tags" {
   type = list(string)
 }
 
-variable "openvpn_vpc_cidr" {}
 variable "openvpn_ami_id" {}
 variable "openvpn_instance_type" {}
 variable "openvpn_key_name" {}

@@ -22,7 +22,6 @@ openvpn_min_size         = 1
 openvpn_desired_capacity = 1
 OpenVpnAdminUser         = "openvpn"
 OpenVpnAdminPassword     = "TY>c}pinTw27J*Jy"
-openvpn_vpc_cidr         = "10.0.0.0/16"
 openvpnBackupBucket      = "recrd-management-eu-west-1"
 openvpn_asg_tags = [
   {
