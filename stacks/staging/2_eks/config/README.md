@@ -15,12 +15,12 @@ while the Helm release resource requires all annotations to be available at plan
 This pattern allows simple management of Helm charts with Terraform.
 
 Order of execution for configs
-#################################################
+#######################################################################################################
 directory                               |   terraform workspace
-#################################################
+#######################################################################################################
 1. configs                              | staging_kubernetes__config
-1. sealed_secrets                       | stage_kubernetes__config__sealed_secrets
-2. aws_load_balancer_controller 
+2. sealed_secrets                       | stage_kubernetes__config__sealed_secrets
+3. aws_load_balancer_controller         | staging_kubernetes__config__aws_load_balancer_controller
     - echo service
 4. cluster_autoscaler
 5. cert_manager - need to check
