@@ -1,6 +1,6 @@
 locals {
   eks_addon_ecr = "602401143452.dkr.ecr.eu-west-1.amazonaws.com" # NOTE: https://docs.aws.amazon.com/eks/latest/userguide/add-ons-images.html
-  name          = "aws-load-balancer-controller"
+  name          = "${data.tfe_outputs.kubernetes.values.cluster_name}-aws-load-balancer-controller"
 }
 
 data "tfe_outputs" "kubernetes" {
