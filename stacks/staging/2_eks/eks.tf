@@ -46,7 +46,7 @@ module "eks" {
       max_size     = 6
       desired_size = 2
 
-      subnet_ids = data.tfe_outputs.bootstrap.values.private_subnet_ids #!!module.vpc.private_subnets
+      subnet_ids = data.tfe_outputs.bootstrap.values.private_subnet_ids
     }
   }
 
