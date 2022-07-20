@@ -12,7 +12,7 @@ module "eks" {
 
   cluster_endpoint_private_access = true
   cluster_endpoint_public_access  = false
-
+  /*
   cluster_security_group_additional_rules = {
     vpn_access_443 = {
       description              = "Allow VPN clients to access cluster API"
@@ -23,11 +23,13 @@ module "eks" {
       source_security_group_id = data.tfe_outputs.bootstrap.values.eks_security_group_id #NOTE:aws_security_group.vpn_clients.id
     }
   }
-
+*/
   vpc_id     = data.tfe_outputs.bootstrap.values.vpc_id
   subnet_ids = data.tfe_outputs.bootstrap.values.eks_subnet_ids #NOTE:module.vpc.intra_subnets
 
   eks_managed_node_groups = {
+
+
     # TODO: One node group per AZ?
     default_node_group = {
       # By default, the module creates a launch template to ensure tags are propagated to instances, etc.,
