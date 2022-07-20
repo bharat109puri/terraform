@@ -4,7 +4,7 @@ terraform {
     organization = "recrd"
 
     workspaces {
-      name = "staging_bootstrap"
+      name = "staging_kubernetes__config__actions_runner_controller"
     }
   }
 }

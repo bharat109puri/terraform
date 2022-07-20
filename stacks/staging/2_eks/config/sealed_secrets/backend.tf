@@ -4,7 +4,7 @@ terraform {
     organization = "recrd"
 
     workspaces {
-      name = "staging_bootstrap"
+      name = "stage_kubernetes__config__sealed_secrets"
     }
   }
 }
