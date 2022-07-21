@@ -18,10 +18,10 @@ Order of execution for configs
 #######################################################################################################
 directory                               |   terraform workspace
 #######################################################################################################
-1. configs                              | staging_kubernetes__config
-2. sealed_secrets                       | stage_kubernetes__config__sealed_secrets
-3. aws_load_balancer_controller         | staging_kubernetes__config__aws_load_balancer_controller
-4. external_dns                         |
+1. configs                              | staging_kubernetes__config    - deployed
+2. sealed_secrets                       | stage_kubernetes__config__sealed_secrets - deployed
+3. aws_load_balancer_controller         | staging_kubernetes__config__aws_load_balancer_controller - deployed
+4. external_dns                         | staging_kubernetes__config__external_dns - in progress
 4. cluster_autoscaler
 5. cert_manager - need to check
 3. actions_runner_controller

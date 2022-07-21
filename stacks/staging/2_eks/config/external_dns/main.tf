@@ -5,7 +5,7 @@ locals {
 
 data "tfe_outputs" "bootstrap" {
   organization = "recrd"
-  workspace    = "bootstrap"
+  workspace    = "staging_bootstrap"
 }
 
 data "tfe_outputs" "kubernetes" {
