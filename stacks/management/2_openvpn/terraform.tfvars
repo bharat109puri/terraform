@@ -12,9 +12,9 @@ region = "eu-west-1"
 #===============================================================================
 # openvpn
 #===============================================================================
-openvpn_instance_type    = "t2.micro"
+openvpn_instance_type    = "m3.medium"
 openvpn_key_name         = "chijioke-key"
-openvpn_ami_id           = "ami-0e1415fedc1664f51" ## free 2 user license
+openvpn_ami_id           = "ami-0d432afa53d094073" ##  25 user license
 openvpn_root_volume_type = "standard"
 openvpn_root_volume_size = "20"
 openvpn_max_size         = 1
