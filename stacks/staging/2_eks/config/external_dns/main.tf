@@ -14,7 +14,7 @@ data "tfe_outputs" "kubernetes" {
 }
 
 module "external_dns_controller_role" {
-  source = "../../../modules/service_account_role"
+  source = "../../../../../modules/service_account_role"
 
   name      = local.name
   namespace = "kube-system"
