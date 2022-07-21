@@ -1,6 +1,6 @@
 locals {
-  domain = "recrd.com"
-  name   = "external-dns-controller"
+  domain = "stg.recrd.com"
+  name   = "${data.tfe_outputs.kubernetes.values.cluster_name}-external-dns-controller"
 }
 
 data "tfe_outputs" "bootstrap" {
