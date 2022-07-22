@@ -1,11 +1,11 @@
 locals {
-  domain = "recrd.com"
-  name   = "external-dns-controller"
+  domain = "stg.recrd.com"
+  name   = "${data.tfe_outputs.kubernetes.values.cluster_name}-external-dns-controller"
 }
 
 data "tfe_outputs" "bootstrap" {
   organization = "recrd"
-  workspace    = "bootstrap"
+  workspace    = "staging_bootstrap"
 }
 
 data "tfe_outputs" "kubernetes" {
@@ -14,7 +14,7 @@ data "tfe_outputs" "kubernetes" {
 }
 
 module "external_dns_controller_role" {
-  source = "../../../modules/service_account_role"
+  source = "../../../../../modules/service_account_role"
 
   name      = local.name
   namespace = "kube-system"

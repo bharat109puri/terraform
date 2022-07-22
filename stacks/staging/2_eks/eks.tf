@@ -3,6 +3,11 @@ data "tfe_outputs" "bootstrap" {
   workspace    = "staging_bootstrap"
 }
 
+data "tfe_outputs" "management" {
+  organization = "recrd"
+  workspace    = "management_network"
+}
+
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "18.0.6"
@@ -12,18 +17,16 @@ module "eks" {
 
   cluster_endpoint_private_access = true
   cluster_endpoint_public_access  = false
-  /*
   cluster_security_group_additional_rules = {
     vpn_access_443 = {
-      description              = "Allow VPN clients to access cluster API"
+      description              = "Allow OpenVPN clients to access cluster API"
       protocol                 = "tcp"
       from_port                = 443
       to_port                  = 443
       type                     = "ingress"
-      source_security_group_id = data.tfe_outputs.bootstrap.values.eks_security_group_id #NOTE:aws_security_group.vpn_clients.id
+      cidr_blocks              = [data.tfe_outputs.management.values.vpc_cidr_block]
     }
   }
-*/
   vpc_id     = data.tfe_outputs.bootstrap.values.vpc_id
   subnet_ids = data.tfe_outputs.bootstrap.values.eks_subnet_ids #NOTE:module.vpc.intra_subnets
 
@@ -46,7 +49,7 @@ module "eks" {
       max_size     = 6
       desired_size = 2
 
-      subnet_ids = data.tfe_outputs.bootstrap.values.private_subnet_ids #!!module.vpc.private_subnets
+      subnet_ids = data.tfe_outputs.bootstrap.values.private_subnet_ids
     }
   }
 

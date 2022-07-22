@@ -8,7 +8,7 @@ data "aws_availability_zones" "available" {
 
 data "tfe_outputs" "staging_network" {
   organization = "recrd"
-  workspace    = "staging_network"
+  workspace    = "staging_bootstrap"
 }
 
 data "tfe_outputs" "prod_network" {

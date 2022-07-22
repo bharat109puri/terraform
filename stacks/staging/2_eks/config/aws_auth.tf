@@ -26,7 +26,7 @@ locals {
 
 resource "kubernetes_config_map_v1" "aws_auth" {
   metadata {
-    name      = "aws-auth"
+    name      = "staging-aws-auth"
     namespace = "kube-system"
   }
 
