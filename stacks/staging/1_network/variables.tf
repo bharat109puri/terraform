@@ -18,3 +18,9 @@ variable "vpc_cidr" {
   description = "VPC CIDR (specify a /16)"
   type        = string
 }
+
+
+### DNS Hostzones
+variable "apps_astradb" {}
+variable "db_astradb" {}
+variable "recrd_zone" {}
