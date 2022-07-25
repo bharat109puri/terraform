@@ -23,5 +23,5 @@ directory                               |   terraform workspace
 3. aws_load_balancer_controller         | staging_kubernetes__config__aws_load_balancer_controller - deployed
 4. external_dns                         | staging_kubernetes__config__external_dns - deployed
 5. cert_manager                         | staging_kubernetes__config__cert_manager - deployed
-6. cluster_autoscaler                   |  in progress
+6. cluster_autoscaler                   | staging_kubernetes__config__cluster_autoscaler - deployed
 7. actions_runner_controller
