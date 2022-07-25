@@ -1,0 +1,16 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  creationTimestamp: "2022-04-25T16:51:44Z"
+  name: github-actions-deployer-deploy
+  namespace: default
+  resourceVersion: "12887321"
+  uid: 814496a5-116e-4b52-b5e4-0e9a3d3e645a
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: deploy
+subjects:
+- kind: ServiceAccount
+  name: github-actions-deployer
+  namespace: default
