@@ -24,7 +24,7 @@ data "aws_iam_policy_document" "manage_ecr_repos" {
 # }
 
 resource "aws_iam_policy" "manage_ecr_repos" {
-  name   = "manage-ecr-repos"
+  name   = "manage-${var.environment}-ecr-repos"
   policy = data.aws_iam_policy_document.manage_ecr_repos.json
 }
 
