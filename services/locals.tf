@@ -24,6 +24,7 @@ locals {
     "recrd-cli",
     "musi",
     "lena-micro-services",
-    "echo"
+    "echo",
+    "lena-batch-services"
   ])
 }
