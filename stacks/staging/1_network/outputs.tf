@@ -23,12 +23,12 @@ output "eks_subnet_ids" {
   description = "List of the private EKS subnet IDs"
   value       = module.vpc.intra_subnets
 }
-/*
+
 output "github_oidc_provider_arn" {
   description = "The ARN of the GitHub OIDC Provider"
   value       = aws_iam_openid_connect_provider.github_actions.arn
 }
-*/
+
 output "nat_public_ips" {
   description = "List of NAT Gateway IP addresses used (private subnet external IPs)"
   value       = module.vpc.nat_public_ips
@@ -62,4 +62,9 @@ output "vpc_id" {
 output "eks_security_group_id" {
   description = "EKS security group ID"
   value       = aws_security_group.eks_sg.id
+}
+
+output "recrd_com_public_zone_id" {
+  description = "Zone ID of the recrd.com public hosted zone"
+  value       = aws_route53_zone.recrd_com.zone_id
 }

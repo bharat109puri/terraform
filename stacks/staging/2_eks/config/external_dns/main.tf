@@ -1,16 +1,7 @@
 locals {
   domain = "stg.recrd.com"
-  name   = "${data.tfe_outputs.kubernetes.values.cluster_name}-external-dns-controller"
-}
-
-data "tfe_outputs" "bootstrap" {
-  organization = "recrd"
-  workspace    = "staging_bootstrap"
-}
-
-data "tfe_outputs" "kubernetes" {
-  organization = "recrd"
-  workspace    = "staging_kubernetes"
+  ## this domain name should be picked from network stack ## TODO work
+  name = "${data.tfe_outputs.kubernetes.values.cluster_name}-external-dns-controller"
 }
 
 module "external_dns_controller_role" {
