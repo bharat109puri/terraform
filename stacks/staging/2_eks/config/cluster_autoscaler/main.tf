@@ -9,7 +9,7 @@ module "cluster_autoscaler" {
   enabled = true
 
   cluster_name                     = data.tfe_outputs.kubernetes.values.cluster_name
-  cluster_identity_oidc_issuer     = data.tfe_outputs.kubernetes.cluster_oidc_issuer_url
+  cluster_identity_oidc_issuer     = data.tfe_outputs.kubernetes.values.cluster_oidc_issuer_url
   cluster_identity_oidc_issuer_arn = data.tfe_outputs.kubernetes.values.oidc_provider_arn
   aws_region                       = var.region
 }
