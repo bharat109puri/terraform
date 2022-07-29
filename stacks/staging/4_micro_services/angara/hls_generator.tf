@@ -9,17 +9,22 @@ data "aws_iam_policy_document" "assume_policy" {
   }
 }
 
+data "tfe_outputs" "congo" {
+  organization = "recrd"
+  workspace    = join("_", ["${var.env}", "congo"])
+}
+
 data "aws_iam_policy_document" "hls_generator" {
   statement {
     sid       = "UploadBucket"
     actions   = ["s3:GetObject"]
-    resources = ["arn:aws:s3:::recrd-upload/*"]
+    resources = ["${data.tfe_outputs.congo.values.upload_bucket_arn}/*"]
   }
 
   statement {
     sid       = "DownloadBucket"
     actions   = ["s3:PutObject"]
-    resources = ["arn:aws:s3:::recrd-content/*"]
+    resources = ["${data.tfe_outputs.congo.values.content_bucket_arn}/*"]
   }
 }
 
