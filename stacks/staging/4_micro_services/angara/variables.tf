@@ -14,3 +14,9 @@ variable "env" {
   type        = string
   default     = ""
 }
+
+variable "kubernetes_config_path" {
+  description = "path to kubernetes configuration file"
+  type        = string
+  default     = "../../terraform/kubernetes/kubeconfig.yaml" # FIXME
+}
