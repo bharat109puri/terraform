@@ -21,12 +21,12 @@ data "aws_iam_policy_document" "angara" {
 
   statement {
     actions   = ["s3:PutObject", "s3:GetObject"]
-    resources = ["arn:aws:s3:::recrd-content/*"]
+    resources = ["${data.tfe_outputs.congo.values.content_bucket_arn}/*"]
   }
 
   statement {
     actions   = ["s3:PutObject", "s3:GetObject"]
-    resources = ["arn:aws:s3:::recrd-upload/*"]
+    resources = ["${data.tfe_outputs.congo.values.upload_bucket_arn}/*"]
   }
 
   statement {
