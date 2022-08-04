@@ -19,7 +19,3 @@ resource "aws_route53_zone" "db_astradb_datastax_com" {
 resource "aws_route53_zone" "recrd_com" {
   name = "recrd.com"
 }
-
-resource "aws_route53_zone" "community_recrd_com" {
-  name = "community.recrd.com"
-}
