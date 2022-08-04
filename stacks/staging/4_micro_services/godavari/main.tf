@@ -1,6 +1,6 @@
 data "tfe_outputs" "bootstrap" {
   organization = "recrd"
-  workspace    = "bootstrap"
+  workspace    = join("_", ["${var.env}", "bootstrap"])
 }
 
 module "elastic_vpc_endpoint" {
@@ -16,7 +16,7 @@ module "elastic_vpc_endpoint" {
 module "elastic_deployment" {
   source = "git@github.com:RecrdGroup/terraform.git//modules/elastic_cloud?ref=master"
 
-  name            = "prod"
+  name            = var.env
   elastic_version = "8.0.1"
   vpc_endpoint_id = module.elastic_vpc_endpoint.id
 }
