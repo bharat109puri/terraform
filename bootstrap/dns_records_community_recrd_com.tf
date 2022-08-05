@@ -36,6 +36,15 @@ resource "aws_route53_record" "community_recrd_com_TXT" {
   type    = "TXT"
   ttl     = local.ttl
   records = [
+    "google-site-verification=xnMhIb80CjXskNXrNP3OZ4A8UjrGlNR-lDZMn9tYJ58",
     "v=spf1 include:amazonses.com ~all"
   ]
+}
+
+resource "aws_route53_record" "_2l7bbnxyf2ee_CNAME" {
+  zone_id = aws_route53_zone.recrd_com.zone_id
+  name    = "2l7bbnxyf2ee.community.recrd.com"
+  type    = "CNAME"
+  ttl     = local.ttl
+  records = ["gv-ffyjciri2mp6ri.dv.googlehosted.com"]
 }
