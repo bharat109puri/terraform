@@ -1,0 +1,36 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - git@github.com:RecrdGroup/kustomize.git//base?ref=1.1.0
+
+components:
+  - git@github.com:RecrdGroup/kustomize.git//components/kafka?ref=1.1.0
+
+patches:
+  - patch_deployment.yaml
+  - patch_sealedsecret.yaml
+
+namePrefix: angara-
+
+commonLabels:
+  app: angara
+
+images:
+  - name: app
+    newName: 378942204220.dkr.ecr.eu-west-1.amazonaws.com/angara
+
+configMapGenerator:
+  - name: config
+    behavior: merge
+    literals:
+      - AWS_REGION=eu-west-1
+      - CONTENT_BUCKET=recrd-staging-content
+      - CONTENT_BUCKET_HOST_NAME=staging-content.stg.recrd.com
+      - KAFKA_GROUP_ID=angara_app
+      - KAFKA_TEMP_STATE_DIRECTORY=/tmp/
+      - MEDIA_CONVERTER_ACCESS_KEY=""
+      - MEDIA_CONVERTER_ENDPOINT=https://r1eeew44a.mediaconvert.eu-west-1.amazonaws.com
+      - MEDIA_CONVERTER_ROLE_ARN=arn:aws:iam::378942204220:role/hls-generator-role
+      - MEDIA_CONVERTER_SECRET_KEY=""
+      - UPLOAD_BUCKET=recrd-staging-upload
