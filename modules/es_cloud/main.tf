@@ -27,13 +27,14 @@ resource "ec_deployment" "this" {
 
     # NOTE: https://github.com/elastic/terraform-provider-ec/issues/336
     # NOTE: topology blocks must be kept in an alphabetical order based on `id`
-  
+
 
     dynamic "topology" {
       for_each = var.topology
       content {
-       id = topology.value["id"]
-       zone_count = topology.value["zone_count"]
+        id         = topology.value["id"]
+        zone_count = topology.value["zone_count"]
+        size       = topology.value["size"]
         autoscaling {
           max_size = topology.value["autoscaling_max_size"]
         }
