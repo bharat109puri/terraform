@@ -15,8 +15,9 @@ variable "vpc_endpoint_id" {
 
 variable "topology" {
   type = list(object({
-    id = string
-    zone_count = number
+    id                   = string
+    zone_count           = number
+    size                 = string
     autoscaling_max_size = string
   }))
   nullable = true
