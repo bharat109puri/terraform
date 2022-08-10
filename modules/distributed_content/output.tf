@@ -3,6 +3,11 @@ output "bucket_name" {
   value       = module.origin_bucket.name
 }
 
+output "bucket_arn" {
+  description = "ARN of origin bucket"
+  value       = module.origin_bucket.arn
+}
+
 output "distribution_arn" {
   description = "ARN of the CloudFront distribution"
   value       = aws_cloudfront_distribution.this.arn
