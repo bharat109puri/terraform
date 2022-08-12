@@ -1,6 +1,6 @@
 output "confluent_kafka_service_name" {
   description = "Confluent Cloud VPC Endpoint service name for the Kafka cluster (Cluster overview/Networking/Private Link Service)"
-  value       = confluent_private_link_access.aws.private_link_endpoint_service
+  value       = confluent_network.aws-private-link.aws[0].private_link_endpoint_service
 }
 
 output "bootstrap_endpoint" {

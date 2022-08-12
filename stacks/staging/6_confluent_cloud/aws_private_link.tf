@@ -9,12 +9,12 @@ data "tfe_outputs" "bootstrap" {
 }
 
 
-module "recrd_test_cluster" {
+module "confluent_cluster_private_link" {
   source = "git@github.com:RecrdGroup/terraform.git//modules/confluentcloud_private_link?ref=master" # TODO: Use tags?
 
-  name = "recrd_test_cluster"
+  name = join("-", ["recrd", "${var.env}", "cluster"])
 
-  confluent_kafka_service_name = confluent_private_link_access.aws.private_link_endpoint_service
+  confluent_kafka_service_name = confluent_network.aws-private-link.aws[0].private_link_endpoint_service
   bootstrap_endpoint           = confluent_kafka_cluster.this.bootstrap_endpoint
 
   subnet_cidr_blocks = data.tfe_outputs.bootstrap.values.private_subnet_cidr_blocks
