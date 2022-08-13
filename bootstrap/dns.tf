@@ -20,6 +20,7 @@ resource "aws_route53_zone" "recrd_com" {
   name = "recrd.com"
 }
 
-resource "aws_route53_zone" "community_recrd_com" {
-  name = "community.recrd.com"
-}
+#NOTE: When we creating subdomain at google workspace and mapping it to separete hosted zone google unable to verify and activate Gmail
+# resource "aws_route53_zone" "community_recrd_com" {
+#   name = "community.recrd.com"
+# }
