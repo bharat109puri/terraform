@@ -20,4 +20,6 @@ module "confluent_cluster_private_link" {
   subnet_cidr_blocks = data.tfe_outputs.bootstrap.values.private_subnet_cidr_blocks
   subnet_ids         = data.tfe_outputs.bootstrap.values.private_subnet_ids
   vpc_id             = data.tfe_outputs.bootstrap.values.vpc_id
+
+  depends_on = [confluent_network.aws-private-link, confluent_kafka_cluster.this]
 }
