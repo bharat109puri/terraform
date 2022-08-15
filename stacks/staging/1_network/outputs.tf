@@ -62,8 +62,3 @@ output "eks_security_group_id" {
   description = "EKS security group ID"
   value       = aws_security_group.eks_sg.id
 }
-
-output "recrd_com_public_zone_id" {
-  description = "Zone ID of the recrd.com public hosted zone"
-  value       = aws_route53_zone.recrd_com.zone_id
-}
