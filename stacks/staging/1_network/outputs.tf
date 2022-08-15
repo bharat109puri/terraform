@@ -1,4 +1,3 @@
-/*
 output "apps_astradb_datastax_com_zone_id" {
   description = "Zone ID of the apps.astradb.datastax.com private hosted zone"
   value       = aws_route53_zone.apps_astradb_datastax_com.zone_id
@@ -8,7 +7,7 @@ output "db_astradb_datastax_com_zone_id" {
   description = "Zone ID of the db.astradb.datastax.com private hosted zone"
   value       = aws_route53_zone.db_astradb_datastax_com.zone_id
 }
-*/
+
 output "eks_cluster_name" {
   description = "Name of the EKS cluster used for subnet tagging (required for load balancer provisioning)"
   value       = local.eks_cluster_name
