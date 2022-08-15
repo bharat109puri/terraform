@@ -11,8 +11,12 @@ locals {
       alias_name    = "d-pjamjl3u35.execute-api.eu-west-2.amazonaws.com.",
       alias_zone_id = "ZJ5UAJN8Y3Z2Q",
     },
-    "media.recrd.com" = {
-      alias_name    = "d2frhyzbkg7yr0.cloudfront.net.",
+    # "media.recrd.com" = {
+    #   alias_name    = "d2frhyzbkg7yr0.cloudfront.net.",
+    #   alias_zone_id = local.cloudfront_zone_id,
+    # },
+    "images.recrd.com" = {
+      alias_name    = "d3i0jjyvp5d6ky.cloudfront.net.",
       alias_zone_id = local.cloudfront_zone_id,
     },
   }
