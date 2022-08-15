@@ -6,7 +6,7 @@ data "tfe_outputs" "bootstrap" {
 module "cassandra_database" {
   source = "git@github.com:RecrdGroup/terraform.git//modules/cassandra_database?ref=master"
 
-  name = "prod"
+  name = var.environment
 
   subnet_cidr_blocks = data.tfe_outputs.bootstrap.values.private_subnet_cidr_blocks
   subnet_ids         = data.tfe_outputs.bootstrap.values.private_subnet_ids
