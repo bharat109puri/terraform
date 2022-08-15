@@ -29,11 +29,11 @@ data "aws_iam_policy_document" "hls_generator" {
 }
 
 resource "aws_iam_role" "hls_generator" {
-  name               = "hls-generator-role"
+  name               = join("-", ["${var.env}", "hls-generator-role"])
   assume_role_policy = data.aws_iam_policy_document.assume_policy.json
 
   inline_policy {
-    name   = "hls-generator-policy"
+    name   = join("-", ["${var.env}", "hls-generator-policy"])
     policy = data.aws_iam_policy_document.hls_generator.json
   }
 }

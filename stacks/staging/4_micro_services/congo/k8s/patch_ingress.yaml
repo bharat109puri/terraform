@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /explore
+            pathType: Prefix
+            backend: &BACKEND
+              service:
+                name: service
+                port:
+                  name: http
+          - path: /interests
+            pathType: Prefix
+            backend: *BACKEND
+          - path: /app/
+            pathType: Prefix
+            backend: *BACKEND
+          - path: /posts
+            pathType: Prefix
+            backend: *BACKEND
+          - path: /settings
+            pathType: Prefix
+            backend: *BACKEND
+          - path: /upload/v1
+            pathType: Prefix
+            backend: *BACKEND
+          - path: /user_profile
+            pathType: Prefix
+            backend: *BACKEND
+          - path: /search
+            pathType: Prefix
+            backend: *BACKEND

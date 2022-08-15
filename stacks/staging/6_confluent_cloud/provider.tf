@@ -4,9 +4,9 @@ terraform {
       source  = "hashicorp/aws"
       version = "3.70.0"
     }
-    kubernetes = {
-      source  = "hashicorp/kubernetes"
-      version = "2.7.1"
+    confluent = {
+      source  = "confluentinc/confluent"
+      version = "1.1.0"
     }
     tfe = {
       source  = "hashicorp/tfe"
@@ -17,10 +17,6 @@ terraform {
 
 provider "aws" {
   region = var.region
-}
-
-provider "kubernetes" {
-  config_path = var.kubernetes_config_path # FIXME
 }
 
 provider "tfe" {

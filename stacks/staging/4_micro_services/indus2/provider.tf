@@ -19,13 +19,8 @@ provider "aws" {
   region = var.region
 }
 
-provider "aws" {
-  alias  = "us-east-1"
-  region = "us-east-1"
-}
-
 provider "kubernetes" {
-  config_path = "../../terraform/kubernetes/kubeconfig.yaml" # FIXME
+  config_path = var.kubernetes_config_path # FIXME
 }
 
 provider "tfe" {

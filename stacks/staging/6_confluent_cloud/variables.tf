@@ -9,14 +9,13 @@ variable "tfe_token" {
   sensitive   = true
 }
 
+variable "account" {
+  description = "AWS account"
+  type        = string
+}
+
 variable "env" {
   description = "current environment"
   type        = string
   default     = ""
-}
-
-variable "kubernetes_config_path" {
-  description = "path to kubernetes configuration file"
-  type        = string
-  default     = "../../terraform/kubernetes/kubeconfig.yaml" # FIXME
 }
