@@ -3,8 +3,14 @@ data "tfe_outputs" "bootstrap" {
   workspace    = "staging_bootstrap"
 }
 
+data "tfe_outputs" "management" {
+  organization = "recrd"
+  workspace    = "management_network"
+}
+
 module "cassandra_database" {
-  source = "git@github.com:RecrdGroup/terraform.git//modules/cassandra_database?ref=master"
+  # source = "git@github.com:RecrdGroup/terraform.git//modules/cassandra_database?ref=master"
+  source = "../../../modules/cassandra_database"
 
   name = var.environment
 
@@ -16,6 +22,11 @@ module "cassandra_database" {
     nonsensitive(data.tfe_outputs.bootstrap.values.apps_astradb_datastax_com_zone_id),
     nonsensitive(data.tfe_outputs.bootstrap.values.db_astradb_datastax_com_zone_id),
   ]
+
+  management_name               = "management"
+  management_vpc_id             = data.tfe_outputs.management.values.vpc_id
+  management_subnet_cidr_blocks = data.tfe_outputs.management.values.private_subnets_cidr_blocks
+  management_subnet_ids         = data.tfe_outputs.management.values.private_subnets
 }
 
 resource "astra_role" "app_data_reader" {
