@@ -29,7 +29,6 @@ module "vpc" {
 # VPC Peering - Management-Staging
 ################################################################################
 
-
 module "management-staging" {
   # source = "git@github.com:RecrdGroup/terraform.git//modules/vpc-peering?ref=UT-82-peering"
   source = "../../../modules/vpc-peering/"
@@ -41,7 +40,6 @@ module "management-staging" {
   accepter_region = var.region
   accepter_env    = "staging"
 }
-
 
 ################################################################################
 # VPC Peering - Management-Production

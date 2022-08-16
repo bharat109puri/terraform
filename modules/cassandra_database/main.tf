@@ -85,10 +85,9 @@ resource "aws_route53_record" "this" {
 
 
 # Management VPC astra private links
-
 resource "aws_security_group" "management_database_access" {
-  name   = "${var.management_name}-astradb-access"
-  vpc_id = var.vpc_id
+  name   = "${var.management_name}-${var.name}-astradb-access"
+  vpc_id = var.management_vpc_id
 
   # NOTE: https://docs.datastax.com/en/astra/docs/datastax-astra-faq.html#_which_ports_are_used_by_serverless_databases
   # TODO: Use security groups instead of network?
@@ -117,7 +116,7 @@ resource "aws_security_group" "management_database_access" {
   }
 
   tags = {
-    Name = "${var.management_name}-astradb-access"
+    Name = "${var.management_name}-${var.name}-astradb-access"
   }
 
   lifecycle {
@@ -133,12 +132,11 @@ resource "aws_vpc_endpoint" "management" {
   security_group_ids = [aws_security_group.management_database_access.id]
 
   tags = {
-    Name = "${var.management_name}-astradb"
+    Name = "${var.management_name}-${var.name}-astradb"
   }
 }
 
 resource "astra_private_link_endpoint" "management" {
-  endpoint_id   = aws_vpc_endpoint.example.id
   database_id   = astra_database.this.id
   datacenter_id = "${astra_database.this.id}-1"
   endpoint_id   = aws_vpc_endpoint.management.id
