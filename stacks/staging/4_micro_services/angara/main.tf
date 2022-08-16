@@ -1,12 +1,12 @@
 data "tfe_outputs" "kubernetes" {
   organization = "recrd"
-  workspace    = "kubernetes"
+  workspace    = join("_", ["${var.env}", "kubernetes"])
 }
 
-data "tfe_outputs" "indus2" {
-  organization = "recrd"
-  workspace    = join("_", ["${var.env}", "indus2"])
-}
+# data "tfe_outputs" "indus2" {
+#   organization = "recrd"
+#   workspace    = join("_", ["${var.env}", "indus2"])
+# }
 
 data "aws_iam_policy_document" "angara" {
   statement {
@@ -34,14 +34,14 @@ data "aws_iam_policy_document" "angara" {
     resources = ["arn:aws:sqs:*:*:hls_process_status"]
   }
 
-  statement {
-    actions = [
-      "s3:GetObject",
-      "s3:PutObject",
-      "s3:DeleteObject"
-    ]
-    resources = ["${data.tfe_outputs.indus2.values.valossa_results_arn}/*"]
-  }
+  # statement {
+  #   actions = [
+  #     "s3:GetObject",
+  #     "s3:PutObject",
+  #     "s3:DeleteObject"
+  #   ]
+  #   resources = ["${data.tfe_outputs.indus2.values.valossa_results_arn}/*"]
+  # }
 
 }
 
