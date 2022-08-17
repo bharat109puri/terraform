@@ -1,4 +1,0 @@
-*.auto.tfvars
-*.swp
-.terraform/
-.DS_Store
