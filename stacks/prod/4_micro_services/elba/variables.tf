@@ -18,6 +18,6 @@ variable "env" {
 variable "kubernetes_config_path" {
   description = "path to kubernetes configuration file"
   type        = string
-  default     = "../../../../kubernetes/kubeconfig.yaml"
+  default     = "../../2_eks/kubeconfig.yaml" #default value for production microservices - from kubernet directory
 
 }
