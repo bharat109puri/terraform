@@ -12,25 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      -   name: Setup SSH Keys and known_hosts
-          env:
-              SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-          run: |
-              mkdir -p ~/.ssh
-              ssh-keyscan github.com >> ~/.ssh/known_hosts
-              ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-              ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
-
-      -   name: Some task that fetches dependencies
-          env:
-              SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-          run: ./fetch-deps.sh
-
-      - id: matrix
-        run: echo "::set-output name=value::$(git ls-files *.tf | xargs -I{} dirname {} | sort | uniq | jq --raw-input | jq --slurp --compact-output)"
-    outputs:
-      matrix: ${{ steps.matrix.outputs.value }}
-
   validate:
     needs: detect_entrypoints
     runs-on: ubuntu-latest
