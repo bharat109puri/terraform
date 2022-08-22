@@ -11,6 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+            ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+                  
+      - id: matrix
+        run: echo "::set-output name=value::$(git ls-files *.tf | xargs -I{} dirname {} | sort | uniq | jq --raw-input | jq --slurp --compact-output)"
+    outputs:
+      matrix: ${{ steps.matrix.outputs.value }}
 
   validate:
     needs: detect_entrypoints
