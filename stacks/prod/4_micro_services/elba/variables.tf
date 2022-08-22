@@ -18,5 +18,6 @@ variable "env" {
 variable "kubernetes_config_path" {
   description = "path to kubernetes configuration file"
   type        = string
-  default     = "../../../../../kubernetes/kubeconfig.yaml" # FIXME
+  default     = "../../../../kubernetes/kubeconfig.yaml"
+
 }
