@@ -13,7 +13,7 @@ data "aws_iam_policy_document" "musi" {
 module "musi_role" {
   source = "git@github.com:RecrdGroup/terraform.git//modules/service_account_role?ref=master"
 
-  name      = "${var.environment}-musi" # NOTE: ServiceAccount name to be used in k8s deployment
+  name      = "${var.env}-musi" # NOTE: ServiceAccount name to be used in k8s deployment
   namespace = "default"
 
   inline_policy = data.aws_iam_policy_document.musi.json

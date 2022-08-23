@@ -14,7 +14,7 @@ data "tfe_outputs" "kubernetes" {
 }
 
 module "external_dns_controller_role" {
-  source = "../../../modules/service_account_role"
+  source = "git@github.com:RecrdGroup/terraform.git//modules/service_account_role?ref=master"
 
   name      = local.name
   namespace = "kube-system"

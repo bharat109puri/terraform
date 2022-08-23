@@ -5,6 +5,7 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  workflow_dispatch: { }
 
 jobs:
   detect_entrypoints:
@@ -24,6 +25,11 @@ jobs:
         value: ${{fromJson(needs.detect_entrypoints.outputs.matrix)}}
     steps:
       - uses: actions/checkout@v2
+      - name: Install SSH Client 
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
       - name: Terraform common steps
         uses: ./.github/actions/terraform-common
 
