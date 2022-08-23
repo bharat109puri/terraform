@@ -20,8 +20,7 @@ provider "aws" {
 }
 
 provider "kubernetes" {
-  config_path = var.kubernetes_config_path # FIXME
-}
+  config_path = var.kubernetes_config_path}
 
 provider "tfe" {
   token = var.tfe_token

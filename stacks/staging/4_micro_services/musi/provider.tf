@@ -25,7 +25,7 @@ provider "aws" {
 }
 
 provider "kubernetes" {
-  config_path = "../../2_eks/kubeconfig.yaml" # FIXME
+  config_path = var.kubernetes_config_path
 }
 
 provider "tfe" {

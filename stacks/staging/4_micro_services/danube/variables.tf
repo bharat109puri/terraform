@@ -18,5 +18,5 @@ variable "env" {
 variable "kubernetes_config_path" {
   description = "path to kubernetes configuration file"
   type        = string
-  default     = "../../2_eks/kubeconfig.yaml" # dafault it will point to the same cluster. example staging here
+  default     = "../../2_eks/kubeconfig.yaml"
 }
