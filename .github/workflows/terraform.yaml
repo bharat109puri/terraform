@@ -12,11 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: webfactory/ssh-agent@v0.5.4
-        uses: ./
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-                  
       - id: matrix
         run: echo "::set-output name=value::$(git ls-files *.tf | xargs -I{} dirname {} | sort | uniq | jq --raw-input | jq --slurp --compact-output)"
     outputs:
@@ -31,7 +29,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: webfactory/ssh-agent@v0.5.4
-        uses: ./
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
