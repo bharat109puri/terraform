@@ -19,6 +19,12 @@ provider "aws" {
   region = var.region
 }
 
+#NOTE: required for distributed_content module
+provider "aws" {
+  alias  = "us-east-1"
+  region = "us-east-1"
+}
+
 provider "kubernetes" {
   config_path = var.kubernetes_config_path # FIXME
 }
