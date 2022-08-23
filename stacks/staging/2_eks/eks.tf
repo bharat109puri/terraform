@@ -19,12 +19,12 @@ module "eks" {
   cluster_endpoint_public_access  = false
   cluster_security_group_additional_rules = {
     vpn_access_443 = {
-      description              = "Allow OpenVPN clients to access cluster API"
-      protocol                 = "tcp"
-      from_port                = 443
-      to_port                  = 443
-      type                     = "ingress"
-      cidr_blocks              = [data.tfe_outputs.management.values.vpc_cidr_block]
+      description = "Allow OpenVPN clients to access cluster API"
+      protocol    = "tcp"
+      from_port   = 443
+      to_port     = 443
+      type        = "ingress"
+      cidr_blocks = [data.tfe_outputs.management.values.vpc_cidr_block]
     }
   }
   vpc_id     = data.tfe_outputs.bootstrap.values.vpc_id
