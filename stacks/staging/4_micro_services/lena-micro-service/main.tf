@@ -1,6 +1,6 @@
 data "tfe_outputs" "kubernetes" {
   organization = "recrd"
-  workspace    = "kubernetes"
+  workspace    = join("_", ["${var.env}", "kubernetes"])
 }
 
 data "aws_iam_policy_document" "lena" {
