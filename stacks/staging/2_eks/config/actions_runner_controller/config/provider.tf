@@ -12,7 +12,7 @@ terraform {
 }
 
 provider "kubernetes" {
-  config_path = "../../../kubeconfig.yaml"
+  config_path = var.kubernetes_config_path
 }
 
 provider "tfe" {
