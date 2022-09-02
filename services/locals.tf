@@ -25,6 +25,7 @@ locals {
     "musi",
     "lena-micro-services",
     "echo",
-    "lena-batch-services"
+    "lena-batch-services",
+    "indus-sensor"
   ])
 }
