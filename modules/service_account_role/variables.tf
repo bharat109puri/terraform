@@ -13,6 +13,17 @@ variable "name" {
   }
 }
 
+variable "environment" {
+  description = "Enironment where `ServiceAccount` would be created"
+  type        = string
+  default     = ""
+
+  validation {
+    condition     = can(regex("[a-z0-9-]*", var.environment))
+    error_message = "Use lowercase alphanumeric characters or '-'."
+  }
+}
+
 variable "namespace" {
   description = "Kubernetes namespace for the `ServiceAccount` (must exist)"
   type        = string
