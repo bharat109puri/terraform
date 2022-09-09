@@ -1,14 +1,14 @@
 data "tfe_outputs" "bootstrap" {
   organization = "recrd"
-  workspace    = join("_", ["${var.env}", "bootstrap"])
+  workspace    = "%{if var.env != ""}${var.env}_%{endif}bootstrap"
 }
 
 data "tfe_outputs" "kubernetes" {
   organization = "recrd"
-  workspace    = join("_", ["${var.env}", "kubernetes"])
+  workspace    = "%{if var.env != ""}${var.env}_%{endif}kubernetes"
 }
 
 data "tfe_outputs" "angara" {
   organization = "recrd"
-  workspace    = join("_", ["${var.env}", "angara"])
+  workspace    = "%{if var.env != ""}${var.env}_%{endif}angara"
 }

@@ -13,8 +13,9 @@ data "aws_iam_policy_document" "elba" {
 module "yukon_role" {
   source = "git@github.com:RecrdGroup/terraform.git//modules/service_account_role?ref=master"
 
-  name      = "%{if var.env != ""}${var.env}-%{endif}yukon" # NOTE: ServiceAccount name to be used in k8s deployment
-  namespace = "default"
+  name        = "yukon" # NOTE: ServiceAccount name to be used in k8s deployment
+  environment = var.env
+  namespace   = "default"
 
   inline_policy = data.aws_iam_policy_document.elba.json
 

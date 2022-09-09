@@ -20,11 +20,11 @@ data "aws_iam_policy_document" "oidc_assume_policy" {
 }
 
 resource "aws_iam_role" "this" {
-  name               = "${var.name}-role"
+  name               = "%{if var.environment != ""}${var.environment}-%{endif}${var.name}-role"
   assume_role_policy = data.aws_iam_policy_document.oidc_assume_policy.json
 
   inline_policy {
-    name   = "${var.name}-policy"
+    name   = "%{if var.environment != ""}${var.environment}-%{endif}${var.name}-policy"
     policy = var.inline_policy
   }
 }

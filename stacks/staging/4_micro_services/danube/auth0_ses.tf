@@ -10,11 +10,11 @@ data "aws_iam_policy_document" "auth0_ses" {
 }
 
 resource "aws_iam_user" "auth0_ses" {
-  name = join("-", ["${var.env}", "auth0-ses"])
+  name = "%{if var.env != ""}${var.env}-%{endif}auth0-ses"
 }
 
 resource "aws_iam_user_policy" "auth0_ses" {
-  name = join("-", ["${var.env}", "ses"])
+  name = "%{if var.env != ""}${var.env}_%{endif}ses"
   user = aws_iam_user.auth0_ses.name
 
   policy = data.aws_iam_policy_document.auth0_ses.json

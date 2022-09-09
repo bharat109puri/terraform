@@ -28,19 +28,19 @@ locals {
 
 data "tfe_outputs" "bootstrap" {
   organization = "recrd"
-  workspace    = join("_", ["${var.env}", "bootstrap"])
+  workspace    = "%{if var.env != ""}${var.env}_%{endif}bootstrap"
 }
 
 data "tfe_outputs" "kubernetes" {
   organization = "recrd"
-  workspace    = join("_", ["${var.env}", "kubernetes"])
+  workspace    = "%{if var.env != ""}${var.env}_%{endif}kubernetes"
 }
 
 
 module "content_bucket" {
   source = "git@github.com:RecrdGroup/terraform.git//modules/distributed_content?ref=master"
 
-  name    = join("-", ["${var.env}", "content"])
+  name    = "%{if var.env != ""}${var.env}-%{endif}content"
   zone_id = data.tfe_outputs.bootstrap.values.recrd_com_public_zone_id
 
   cors_rule = local.cors
@@ -58,7 +58,7 @@ module "content_bucket" {
 
 
 resource "aws_s3_bucket" "upload" {
-  bucket = join("-", ["recrd", "${var.env}", "upload"])
+  bucket = "recrd-%{if var.env != ""}${var.env}-%{endif}upload"
 
   acl = "private"
 
@@ -113,8 +113,9 @@ data "aws_iam_policy_document" "congo" {
 module "congo_role" {
   source = "git@github.com:RecrdGroup/terraform.git//modules/service_account_role?ref=master"
 
-  name      = join("-", ["${var.env}", "congo"]) # NOTE: ServiceAccount name to be used in k8s deployment
-  namespace = "default"
+  name        = "congo" # NOTE: ServiceAccount name to be used in k8s deployment
+  environment = var.env
+  namespace   = "default"
 
   inline_policy = data.aws_iam_policy_document.congo.json
 

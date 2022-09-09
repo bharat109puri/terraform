@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "valossa_results" {
-  bucket = join("-", ["recrd", "${var.env}", "valossa-results"])
+  bucket = "recrd-%{if var.env != ""}${var.env}-%{endif}valossa-results"
 
   acl = "private"
 
@@ -43,8 +43,9 @@ data "aws_iam_policy_document" "indus2" {
 module "indus2_role" {
   source = "git@github.com:RecrdGroup/terraform.git//modules/service_account_role?ref=master"
 
-  name      = join("-", ["${var.env}", "indus2"]) # NOTE: ServiceAccount name to be used in k8s deployment
-  namespace = "default"
+  name        = "indus2" # NOTE: ServiceAccount name to be used in k8s deployment
+  environment = var.env
+  namespace   = "default"
 
   inline_policy = data.aws_iam_policy_document.indus2.json
 
