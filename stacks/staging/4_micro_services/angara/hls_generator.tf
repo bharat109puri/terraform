@@ -11,7 +11,7 @@ data "aws_iam_policy_document" "assume_policy" {
 
 data "tfe_outputs" "congo" {
   organization = "recrd"
-  workspace    = join("_", ["${var.env}", "congo"])
+  workspace    = "%{if var.env != ""}${var.env}_%{endif}congo"
 }
 
 data "aws_iam_policy_document" "hls_generator" {
@@ -29,11 +29,11 @@ data "aws_iam_policy_document" "hls_generator" {
 }
 
 resource "aws_iam_role" "hls_generator" {
-  name               = join("-", ["${var.env}", "hls-generator-role"])
+  name               = "%{if var.env != ""}${var.env}-%{endif}hls-generator-role"
   assume_role_policy = data.aws_iam_policy_document.assume_policy.json
 
   inline_policy {
-    name   = join("-", ["${var.env}", "hls-generator-policy"])
+    name   = "%{if var.env != ""}${var.env}-%{endif}hls-generator-policy"
     policy = data.aws_iam_policy_document.hls_generator.json
   }
 }

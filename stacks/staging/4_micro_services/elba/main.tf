@@ -1,6 +1,6 @@
 data "tfe_outputs" "kubernetes" {
   organization = "recrd"
-  workspace    = join("_", ["${var.env}", "kubernetes"])
+  workspace    = "%{if var.env != ""}${var.env}_%{endif}kubernetes"
 }
 
 data "aws_iam_policy_document" "elba" {
@@ -13,8 +13,9 @@ data "aws_iam_policy_document" "elba" {
 module "elba_role" {
   source = "git@github.com:RecrdGroup/terraform.git//modules/service_account_role?ref=master"
 
-  name      = join("-", ["${var.env}", "elba"]) # NOTE: ServiceAccount name to be used in k8s deployment
-  namespace = "default"
+  name        = "elba" # NOTE: ServiceAccount name to be used in k8s deployment
+  environment = var.env
+  namespace   = "default"
 
   inline_policy = data.aws_iam_policy_document.elba.json
 

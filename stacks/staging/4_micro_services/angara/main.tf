@@ -1,11 +1,11 @@
 data "tfe_outputs" "kubernetes" {
   organization = "recrd"
-  workspace    = join("_", ["${var.env}", "kubernetes"])
+  workspace    = "%{if var.env != ""}${var.env}_%{endif}kubernetes"
 }
 
 # data "tfe_outputs" "indus2" {
 #   organization = "recrd"
-#   workspace    = join("_", ["${var.env}", "indus2"])
+#   workspace    = "%{if var.env != ""}${var.env}_%{endif}indus2"
 # }
 
 data "aws_iam_policy_document" "angara" {
@@ -48,8 +48,9 @@ data "aws_iam_policy_document" "angara" {
 module "angara_role" {
   source = "git@github.com:RecrdGroup/terraform.git//modules/service_account_role?ref=master"
 
-  name      = join("-", ["${var.env}", "angara"]) # NOTE: ServiceAccount name to be used in k8s deployment
-  namespace = "default"
+  name        = "angara" # NOTE: ServiceAccount name to be used in k8s deployment
+  environment = var.env
+  namespace   = "default"
 
   inline_policy = data.aws_iam_policy_document.angara.json
 
