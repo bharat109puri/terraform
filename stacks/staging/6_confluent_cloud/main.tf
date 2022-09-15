@@ -33,9 +33,7 @@ resource "confluent_kafka_cluster" "this" {
   availability = "SINGLE_ZONE"
   cloud        = "AWS"
   region       = var.region
-  dedicated {
-    cku = 1
-  }
+  basic {}
   environment {
     id = confluent_environment.this.id
   }
