@@ -1,8 +1,8 @@
 terraform {
   required_providers {
-    confluent = {
-      source  = "confluentinc/confluent"
-      version = "1.1.0"
+    aws = {
+      source  = "hashicorp/aws"
+      version = "3.70.0"
     }
     tfe = {
       source  = "hashicorp/tfe"
@@ -11,6 +11,9 @@ terraform {
   }
 }
 
+provider "aws" {
+  region = var.region
+}
 
 provider "tfe" {
   token = var.tfe_token
