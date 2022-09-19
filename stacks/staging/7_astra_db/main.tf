@@ -1,6 +1,6 @@
 data "tfe_outputs" "bootstrap" {
   organization = "recrd"
-  workspace    = "staging_bootstrap"
+  workspace    = "%{if var.environment != ""}${var.environment}_%{endif}bootstrap"
 }
 
 data "tfe_outputs" "management" {
