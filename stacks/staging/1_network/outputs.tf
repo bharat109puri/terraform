@@ -1,11 +1,11 @@
 output "apps_astradb_datastax_com_zone_id" {
   description = "Zone ID of the apps.astradb.datastax.com private hosted zone"
-  value       = aws_route53_zone.apps_astradb_datastax_com.zone_id
+  value       = nonsensitive(data.tfe_outputs.prod_bootstrap.values.apps_astradb_datastax_com_zone_id)
 }
 
 output "db_astradb_datastax_com_zone_id" {
   description = "Zone ID of the db.astradb.datastax.com private hosted zone"
-  value       = aws_route53_zone.db_astradb_datastax_com.zone_id
+  value       = nonsensitive(data.tfe_outputs.prod_bootstrap.values.db_astradb_datastax_com_zone_id)
 }
 
 output "eks_cluster_name" {
