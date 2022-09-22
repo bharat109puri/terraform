@@ -29,13 +29,14 @@ resource "confluent_private_link_access" "aws" {
 }
 
 resource "confluent_kafka_cluster" "this" {
-  display_name = join("-", ["recrd", "${var.env}", "cluster"])
+  display_name = "recrd-%{if var.env != ""}${var.env}-%{endif}cluster"
   availability = "SINGLE_ZONE"
   cloud        = "AWS"
   region       = var.region
   dedicated {
     cku = 1
   }
+
   environment {
     id = confluent_environment.this.id
   }
