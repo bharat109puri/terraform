@@ -44,4 +44,8 @@ resource "confluent_kafka_cluster" "this" {
   network {
     id = confluent_network.aws-private-link.id
   }
+  depends_on = [
+    confluent_environment.this,
+    confluent_network.aws-private-link
+  ]
 }
