@@ -30,14 +30,14 @@ data "tfe_outputs" "management" {
   workspace    = "management_network"
 }
 
-data "tfe_outputs" "staging_bootstarp" {
+data "tfe_outputs" "staging_network" {
   organization = "recrd"
   workspace    = "staging_bootstrap"
 }
 
 locals {
   vpc_ids = [
-    "${nonsensitive(data.tfe_outputs.staging_bootstarp.values.vpc_id)}",
+    "${nonsensitive(data.tfe_outputs.staging_network.values.vpc_id)}",
     "${nonsensitive(data.tfe_outputs.management.values.vpc_id)}"
   ]
 }
