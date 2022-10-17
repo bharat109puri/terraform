@@ -68,8 +68,49 @@ resource "aws_amplify_app" "portal" {
 
 }
 
+###################### amplify branches #######################
 
 resource "aws_amplify_branch" "master" {
   app_id      = aws_amplify_app.portal.id
   branch_name = "master"
+  environment_variables = {
+    REACT_APP_PORTAL_NODE_ENV = "production"
+  }
+  framework = "React"
+  # id        = "d1n6r2i9eyduzu/master"
+  stage = "PRODUCTION"
+  tags  = {}
+
+}
+
+
+resource "aws_amplify_branch" "staging" {
+  app_id      = aws_amplify_app.portal.id
+  branch_name = "staging"
+  environment_variables = {
+    REACT_APP_PORTAL_NODE_ENV = "staging"
+  }
+  # id        = "d1n6r2i9eyduzu/staging"
+  tags = {}
+
+}
+
+
+###################### amplify domains #######################
+
+resource "aws_amplify_domain_association" "example" {
+  app_id      = aws_amplify_app.example.id
+  domain_name = "example.com"
+
+  # https://example.com
+  sub_domain {
+    branch_name = aws_amplify_branch.master.branch_name
+    prefix      = ""
+  }
+
+  # https://www.example.com
+  sub_domain {
+    branch_name = aws_amplify_branch.master.branch_name
+    prefix      = "www"
+  }
 }
