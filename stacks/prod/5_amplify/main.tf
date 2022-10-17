@@ -98,19 +98,22 @@ resource "aws_amplify_branch" "staging" {
 
 ###################### amplify domains #######################
 
-resource "aws_amplify_domain_association" "example" {
-  app_id      = aws_amplify_app.example.id
-  domain_name = "example.com"
-
-  # https://example.com
+resource "aws_amplify_domain_association" "recrd_com" {
+  app_id                = aws_amplify_app.portal.id
+  domain_name           = "recrd.com"
+  wait_for_verification = false
   sub_domain {
-    branch_name = aws_amplify_branch.master.branch_name
-    prefix      = ""
+    branch_name = "master"
+    # dns_record  = "portal CNAME d3qcessu2jhbj4.cloudfront.net"
+    prefix = "portal"
+    # verified = false
   }
 
-  # https://www.example.com
   sub_domain {
-    branch_name = aws_amplify_branch.master.branch_name
-    prefix      = "www"
+    branch_name = "staging"
+    # dns_record  = "staging-portal CNAME d3qcessu2jhbj4.cloudfront.net"
+    prefix = "staging-portal"
+    # verified = false
   }
+
 }
