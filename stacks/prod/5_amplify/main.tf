@@ -10,22 +10,22 @@ resource "aws_amplify_app" "portal" {
   enable_branch_auto_deletion = false
   # The default build_spec added by the Amplify Console for React.
   build_spec = <<-EOT
-		version: 1
-		frontend:
-			phases:
+    version: 1
+    frontend:
+      phases:
         preBuild:
           commands:
             - yarn install
         build:
           commands:
             - yarn run build
-        artifacts:
-          baseDirectory: build
-          files:
-            '**/*'
-        cache:
-          paths:
-            - node_modules/**/*
+      artifacts:
+        baseDirectory: build
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*
 		EOT
 
   environment_variables = {
@@ -57,7 +57,7 @@ resource "aws_amplify_app" "portal" {
   custom_rule {
     source = "/<*>"
     target = "/index.html"
-    status = "404"
+    status = "404-200"
   }
 
   custom_rule {
@@ -68,3 +68,8 @@ resource "aws_amplify_app" "portal" {
 
 }
 
+
+resource "aws_amplify_branch" "master" {
+  app_id      = aws_amplify_app.portal.id
+  branch_name = "master"
+}
