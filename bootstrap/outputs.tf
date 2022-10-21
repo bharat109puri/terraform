@@ -58,7 +58,7 @@ output "vpc_id" {
   value       = module.vpc.vpc_id
 }
 
-output "vpn_clients_security_group_id" {
-  description = "Security group ID associated with the VPN clients"
-  value       = aws_security_group.vpn_clients.id
-}
+# output "vpn_clients_security_group_id" {
+#   description = "Security group ID associated with the VPN clients"
+#   value       = aws_security_group.vpn_clients.id
+# }
