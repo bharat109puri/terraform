@@ -93,8 +93,14 @@ resource "ec_deployment" "this" {
             xpack.reporting.capture.timeouts.openUrl: 300000
             xpack.reporting.capture.timeouts.waitForElements: 300000
             xpack.reporting.capture.timeouts.renderComplete: 300000
+            # 2022-11-21
+            # Configure reporting in Kibana - Grant users access to reporting
+            # https://www.elastic.co/guide/en/kibana/8.4/secure-reporting.html#grant-user-access
             xpack.reporting.roles.enabled: false
         EOT
+    }
+    topology {
+      size = "2g"
     }
   }
 
