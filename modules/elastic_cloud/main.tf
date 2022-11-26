@@ -93,6 +93,7 @@ resource "ec_deployment" "this" {
             xpack.reporting.capture.timeouts.openUrl: 300000
             xpack.reporting.capture.timeouts.waitForElements: 300000
             xpack.reporting.capture.timeouts.renderComplete: 300000
+            xpack.reporting.roles.enabled: false
         EOT
     }
   }
